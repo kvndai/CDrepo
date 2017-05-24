@@ -1,0 +1,44 @@
+#wrapper{
+  /*width: 970px;*/
+  background-color: #1c345e;
+  padding: 10px;
+}
+#header{
+  height: 55px;
+  background-color: red;
+  display: block;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+
+}
+#nav{
+  height: 250px;
+  width: 200px;
+  display: inline-block;
+  background-color: #2a7d8c;
+  vertical-align: top;
+  margin: 10px;
+  border-radius: 10px;
+}
+#main-content{
+  height: 500px;
+  width: auto;
+  vertical-align: top;
+  display: inline-block;
+  background-color: #0e1822;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+
+
+}
+#footer{
+  height: 100px;
+  display: block;
+  background-color: blue;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+}
