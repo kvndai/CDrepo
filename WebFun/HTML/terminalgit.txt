@@ -1,0 +1,127 @@
+
+Dai@Dai-PC MINGW64 ~
+$ cd desktop
+
+Dai@Dai-PC MINGW64 ~/desktop
+$ mkdir DojoAssignments
+
+Dai@Dai-PC MINGW64 ~/desktop
+$ cd dojoassignments
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$ mkdir webfundamentals python mean ruby ios netcore
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$ cd webfundamentals
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$ cd python
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/python
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/python
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$ cd mean
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/mean
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/mean
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$ cd ruby
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/ruby
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/ruby
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$ cd ios
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/ios
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/ios
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$ cd netcore
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/netcore
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/netcore
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$ cd webfundamentals
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals
+$ mkdir git html css javascript
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals
+$ cd git
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/git
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/git
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals
+$ cd html
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/html
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/html
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals
+$ cd css
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/css
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/css
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals
+$ cd javascript
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/javascript
+$ touch about.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/javascript
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals
+$ cd html
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/html
+$ touch indentation.html
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals/html
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments/webfundamentals
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$ dir
+ios  mean  netcore  python  ruby  webfundamentals
+
+Dai@Dai-PC MINGW64 ~/desktop/dojoassignments
+$

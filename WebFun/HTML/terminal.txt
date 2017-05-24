@@ -1,0 +1,38 @@
+
+Dai@Dai-PC MINGW64 ~
+$ cd desktop/
+
+Dai@Dai-PC MINGW64 ~/desktop
+$ mkdir test
+
+Dai@Dai-PC MINGW64 ~/desktop
+$ cd test
+
+Dai@Dai-PC MINGW64 ~/desktop/test
+$ touch index.html styles.css commands.txt
+
+Dai@Dai-PC MINGW64 ~/desktop/test
+$ cp index.html index_2.html
+
+Dai@Dai-PC MINGW64 ~/desktop/test
+$ rm styles.css
+
+Dai@Dai-PC MINGW64 ~/desktop/test
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop
+$ mkdir destination/
+
+Dai@Dai-PC MINGW64 ~/desktop
+$ cd test
+
+Dai@Dai-PC MINGW64 ~/desktop/test
+$ mv index_2.html ../
+
+Dai@Dai-PC MINGW64 ~/desktop/test
+$ cd ..
+
+Dai@Dai-PC MINGW64 ~/desktop
+$ mv index_2.html destination/
+
+Dai@Dai-PC MINGW64 ~/desktop
