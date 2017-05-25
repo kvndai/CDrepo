@@ -27,18 +27,19 @@
   width: 450px;
   display: inline-block;
   margin-right: 10px;
-  background-color: white;
+
 }
 .bigimg img{
   width: 100%;
   height: 100%;
   /*padding*/
+  border: solid grey 5px;
 }
 
 .about{
   width: 50%;
   display: inline-block;
-  padding-bottom: 45px;
+  padding-bottom: 55px;
   background-color: white;
 }
 .aboutheader{
@@ -47,6 +48,7 @@
 .aboutheader h3{
   padding: 5px;
   margin: 0px;
+  color: white;
 }
 .aboutcontent{
   padding: 5px;
@@ -56,6 +58,10 @@
 .lamode{
   width: 300px;
   display: inline-block;
+  margin-right: 10px;
+  margin-left: 20px;
+  background-color: white;
+  margin-bottom: 10px;
 }
 .lamodecontent{
   width: 100%;
@@ -63,9 +69,15 @@
 .lamodecontent img{
   width: 100%;
 }
+.lamodecontent p{
+  height: 150px;
+  padding: 5px;
+}
 .family{
   width: 300px;
   display: inline-block;
+  margin-right: 10px;
+  background-color: white;
 }
 .familycontent{
   width: 100%;
@@ -73,9 +85,14 @@
 .familycontent img{
   width: 100%;
 }
+.familycontent p{
+  height: 150px;
+  padding: 5px;
+}
 .fiveeleven{
   width: 300px;
   display: inline-block;
+  background-color: white;
 }
 .fiveelevencontent{
   width: 100%;
@@ -83,10 +100,48 @@
 .fiveelevencontent img{
   width: 100%;
 }
-
-.imgrow1{
-  width: 100%
+.fiveelevencontent p{
+  height: 150px;
+  padding: 5px;
 }
-.imgrow2{
-  width: 100%;
+.greyheader{
+  background-color: grey
+}
+.greyheader h3{
+  padding: 5px;
+  margin: 0px;
+  color: white;
+}
+.greyheader h4{
+  padding: 5px;
+  margin: 0px;
+  color: white;
+}
+.tech{
+
+}
+.tech img{
+  display: inline-block;
+  width: 45px;
+  padding: 5px;
+}
+.button{
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #4CAF50;
+  color: white;
+}
+.footer{
+  width: 970px;
+  text-align: center;
+}
+.footer a{
+  color: black;
+}
+.footer img{
+  width: 20px;
 }
