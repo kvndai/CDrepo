@@ -3,16 +3,24 @@
   background-color: #1c345e;
   padding: 10px;
 }
+p, h3, ul, li{
+  color: white;
+}
+
+a{
+  color: #42b983;
+}
+
+.bluefont{
+  color: #717be6;
+}
 
 .header{
-  /*height: 55px;*/
   width: 100%;
   background-color: #ce3036;
   border-radius: 10px;
   color: white;
-  margin-bottom: 10px;
 }
-
 
 .nav{
   width: 200px;
@@ -30,10 +38,11 @@
   padding: 10px;
   margin-left: 10px;
   border-radius: 10px;
-
 }
 .footer{
   width: 100%;
+  padding: 5px;
   background-color: #5e6673;
   border-radius: 10px;
+  margin-top: 5px;
 }
