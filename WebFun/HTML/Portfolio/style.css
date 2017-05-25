@@ -1,0 +1,92 @@
+*{
+  vertical-align: top;
+}
+.header{
+  background-color: grey;
+  width: 970px;
+}
+.header h1{
+  display: inline-block;
+  margin-left: 20px;
+}
+.header h3{
+  display: inline-block;
+  margin-left: 450px;
+  padding-top: 15px;
+}
+.maincontent{
+  width: 970px;
+  /*padding: 10px 0px 10px 10px;*/
+  background-color: #6f5964;
+}
+.maincontent1{
+  padding:20px;
+}
+
+.bigimg{
+  width: 450px;
+  display: inline-block;
+  margin-right: 10px;
+  background-color: white;
+}
+.bigimg img{
+  width: 100%;
+  height: 100%;
+  /*padding*/
+}
+
+.about{
+  width: 50%;
+  display: inline-block;
+  padding-bottom: 45px;
+  background-color: white;
+}
+.aboutheader{
+  background-color: grey;
+}
+.aboutheader h3{
+  padding: 5px;
+  margin: 0px;
+}
+.aboutcontent{
+  padding: 5px;
+  font-size: 1.05em;
+}
+
+.lamode{
+  width: 300px;
+  display: inline-block;
+}
+.lamodecontent{
+  width: 100%;
+}
+.lamodecontent img{
+  width: 100%;
+}
+.family{
+  width: 300px;
+  display: inline-block;
+}
+.familycontent{
+  width: 100%;
+}
+.familycontent img{
+  width: 100%;
+}
+.fiveeleven{
+  width: 300px;
+  display: inline-block;
+}
+.fiveelevencontent{
+  width: 100%;
+}
+.fiveelevencontent img{
+  width: 100%;
+}
+
+.imgrow1{
+  width: 100%
+}
+.imgrow2{
+  width: 100%;
+}
