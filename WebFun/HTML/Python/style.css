@@ -12,10 +12,9 @@
 /* ============Headermain portion style ========== */
 *{
   vertical-align: top;
+  font: verdana;
 }
-a{
-  color: yellow;
-}
+
 .container{
   width: 970px;
   background: linear-gradient(#245176, white  );
@@ -42,6 +41,7 @@ a{
   display: inline-block;
   border-radius: 10px;
   padding: 10px 20px 10px 20px;
+  box-shadow: 10px 11px 28px -10px rgba(0,0,0,0.75);
 }
 .search{
   text-align: center;
@@ -58,10 +58,74 @@ a{
 
 .header{
   background-color: #3d79ad;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-right: 20px;
+  box-shadow: 10px 11px 28px -7px rgba(0,0,0,0.75);
 }
 .header h2{
   display: inline-block;
+  margin-left: 45px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+/* ======= NavUl =======*/
+
+.navul{
+  display: inline-block;
   margin-left: 50px;
+  margin-top: 40px;
+  color: white;
+  list-style-position: inside;
+}
+
+.content-preface{
+  display: inline-block;
+  text-align: center;
+  margin-left: 20px;
+}
+.content-preface p{
+  width: 600px;
+  color: white;
+}
+.yellowp{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: yellow;
+  font-style: italic;
+}
+
+
+
+
+.content-wrap{
+  background-color: white;
+}
+
+.content-left{
+  width: 300px;
+  display: inline-block;
+  text-align: center;
+  padding: 40px;
+  padding-top: 0px;
+  border-top: 5px solid grey;
+  margin-top: 10px;
+  margin-left: 100px;
+}
+.content-left h4{
+  margin:  5px;
+}
+.content-right{
+  width: 300px;
+  display: inline-block;
+  text-align: center;
+  padding: 40px;
+  padding-top: 0px;
+  border-top: 5px solid grey;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.content-right h4{
+  margin: 5px;
 }
