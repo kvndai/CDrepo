@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      var hour = 7;
+      var minute = 29;
+      var period = 'PM';
+
+      if(period == 'AM'){
+        period = "morning!"
+      }
+
+      if(period == 'PM'){
+        period = "evening!"
+      }
+
+      if(minute > 30){
+        console.log("It’s almost " + (hour+1) + " in the " + (period));
+      }
+      else {
+        console.log("It's just after " + (hour) + " in the " + (period));
+      }
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
