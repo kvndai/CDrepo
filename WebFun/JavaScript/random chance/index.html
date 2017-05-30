@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      function randomchance(quarters){
+        var value = 0;
+        for(var i=quarters;i>0;i--){
+          var win = Math.floor(Math.random()*100)+1;
+          var winamt = Math.floor(Math.random()*51)+50;
+
+          if (win === 1) {
+            value = (i)+winamt;
+            console.log("quarters left: " + i + " winamt "+winamt);
+            break;
+          }
+          console.log("quarters left: " + i + " winamt "+winamt);
+        }
+        return value;
+      }
+      console.log(randomchance(15));
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
