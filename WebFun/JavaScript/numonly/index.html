@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    var newArray = numbersOnly([1,"apple",-3,"orange",0.5]);
+    function numbersOnly(newArray){
+      var newArr = [];
+      for (var i = 0; i < newArray.length; i++) {
+          if (typeof newArray[i] === "number") {
+            newArr.push(newArray[i]);
+            console.log(newArr);
+          }
+        }
+      }
+
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
