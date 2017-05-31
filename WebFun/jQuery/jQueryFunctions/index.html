@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$('document').ready(function(){
+
+        $('#addClassButton').click(function(){
+					$('#add_class p').css('color', 'red')
+				});
+
+        $('#slideToggleButton').click(function(){
+					$('#toggleTxt').slideToggle("slow")
+				});
+
+        $('#appendButton').click(function(){
+					$('#append').append("<p>This is an appended p tag</p>")
+				});
+
+        $('#hideButton').click(function(){
+					$('#hide p').hide("slow")
+				});
+
+        $('#showButton').click(function(){
+					$('#hide p').show("slow")
+				});
+
+        $('#btn_toggle').click(function(){
+					$('#toggle p').toggle()
+				});
+
+        $('#slideDnBtn').click(function(){
+						$('#slideDn img').slideDown();
+				});
+
+        $('#slideUpBtn').click(function(){
+						$('#slideUp img').slideUp("slow");
+				});
+
+        $('#slidetoggleBtn').click(function(){
+					$('#slideToggle img').slideToggle()
+				});
+
+        $('#fadeOutBtn').click(function(){
+					$('#fadeOut p').fadeOut()
+				});
+
+        $('#fadeInBtn').click(function(){
+					$('#fadeIn').fadeIn("slow")
+				});
+
+        $('#addClassBtn').click(function(){
+					$('#addClass p').addClass("cssClass")
+				});
+
+        $('#beforeBtn').click(function(){
+					$('#before').before("<p>more text added before</p>")
+				});
+
+        $('#afterBtn').click(function(){
+					$('#after').after("<p>more text added after</p>")
+				});
+
+        $('#data').data("test", {first: 16, last: "pizza!"})
+				$('span:first').text($('#data').data("test").first);
+				$('span:last').text($('#data').data("test").last);
+
+        var str=$("#text p:first").text();
+				$('p:last').html(str);
+				$('#val input').keyup(function(){
+					var value=$(this).val();
+					$("#val p").text(value);
+				})
+				.keyup();
+				$( "#attr input" )
+				  .change(function() {
+				    var $input = $( this );
+				    $( "#attr p" ).html( ".attr( 'checked' ): <b>" + $input.attr( "checked" ) + "</b><br>" +
+				      ".prop( 'checked' ): <b>" + $input.prop( "checked" ) + "</b><br>" +
+				      ".is( ':checked' ): <b>" + $input.is( ":checked" ) + "</b>" );
+				  })
+				  .change();
+			})
+		</script>
+
+	</head>
+	<body>
+		<div id="add_class">
+			<button id="addClassButton">AddClass</button>
+			<h4>AddClass</h4>
+			<p>Click the button to add class 'red' to this paragraph</p>
+		</div>
+
+		<div id="slide_toggle">
+			<button id="slideToggleButton">Slidetoggle</button>
+			<h4>Slidetoggle</h4>
+			<p>Click the button to slidetoggle a hidden image</p>
+			<p id="toggleTxt">NSA!</p>
+		</div>
+
+		<div id="append">
+			<button id="appendButton">Append</button>
+			<h4>Append</h4>
+			<p>Click the button to append a new paragraph!</p>
+		</div>
+
+		<div id="hide">
+			<button id="hideButton">Hide</button><button id="showButton">Show</button>
+			<h4>Hide and Show</h4>
+			<p>Click hide to hide</p>
+			<p>Click show to show</p>
+		</div>
+
+		<div id="toggle">
+			<button id="btn_toggle">Toggle</button>
+			<h4>Toggle</h4>
+			<p>This text will be shown and hidden on toggle</p>
+		</div>
+
+		<div id="slideDn">
+			<button id="slideDnBtn">Slide Down</button>
+			<h4>Slide Down</h4>
+			<p>Click Slide Down</p>
+			<img src="jquery.png" style="display:none">
+		</div>
+
+		<div id="slideUp">
+			<button id="slideUpBtn">Slide Up</button>
+			<h4>Slide Up</h4>
+			<p>Click Slide Up</p>
+			<img src="jquery.png">
+		</div>
+
+		<div id="slideToggle">
+			<button id="slideToggleBtn">Slide Toggle</button>
+			<h4>Slide Toggle</h4>
+			<p>Click Slide Up</p>
+			<img src="jquery.png">
+		</div>
+
+		<div id="fadeOut">
+			<button id="fadeOutBtn">Fade Out</button>
+			<h4>Fade Out</h4>
+			<p>This text will fade out</p>
+		</div>
+
+		<div>
+		<button id="fadeInBtn">Fade In</button>
+		  <div style="display:none" id="fadeIn">
+		      <h4>Fade In</h4>
+			    <img src="jquery.png">
+			</div>
+		</div>
+
+		<div id="addClass">
+			<button id="addClassBtn">Add Class</button>
+			<h4>Add Class</h4>
+			<p>Adding separate css class do the p tag</p>
+		</div>
+
+		<div id="before">
+			<button id="beforeBtn">Before</button>
+			<h4>Before</h4>
+			<p>add before</p>
+		</div>
+
+		<div id="after">
+			<button id="afterBtn">after</button>
+			<h4>after</h4>
+			<p>add after</p>
+		</div>
+
+		<div id="data">
+			<h4>Data</h4>
+			<p>The values stored were <span></span> and <span></span></p>
+		</div>
+
+		<div id="text">
+			<h4>Text</h4>
+			<p><b>Test the</b> text</p>
+			<p></p>
+		</div>
+
+		<div id="val">
+			<input id="inVal" type="text" value="some text">
+			<p></p>
+		</div>
+
+		<div id="attr">
+			<input id="check1" type="checkbox" checked="checked">
+			<label for="check1">Check me</label>
+			<p></p>
+		</div>
+
+	</body>
+</html>
