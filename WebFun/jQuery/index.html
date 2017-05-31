@@ -1,196 +1,82 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<head>
+		<title>Users</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 		<script type="text/javascript">
 			$('document').ready(function(){
-				$('#btn_add_class').click(function(){
-					$('#add_class p').css('color', 'red')
+				$('button').on("click", function(){
+					var f_name=$('#txt_first').val()
+					var l_name=$('#txt_last').val()
+					var email=$('#txt_email').val()
+					var phone=$('#txt_phone').val()
+					var str="<tr><td>" + f_name + "</td><td>" + l_name + "</td><td>" + email + "</td><td>" + phone + "</td></tr>";
+
+					$('#tbod').append(str);
+					// $('td').css('text-align', 'center');
 				});
-				$('#btn_slide_toggle').click(function(){
-					$('#st_txt').slideToggle("slow")
-				});
-				$('#btn_append').click(function(){
-					$('#append').append("<p>This is an appended p tag</p>")
-				});
-				$('#btn_hide').click(function(){
-					$('#hide p').hide("slow")
-				});
-				$('#btn_show').click(function(){
-					$('#hide p').show("slow")
-				});
-				$('#btn_toggle').click(function(){
-					$('#toggle p').toggle()
-				});
-				$('#btn_slide_dn').click(function(){
-					if($('#slide_dn img').is(":hidden")){
-						$('#slide_dn img').slideDown("slow");
-					}else{
-						$('#slide_dn img').hide();
-					}
-				});
-				$('#slide_up_btn').click(function(){
-					if($('#slide_up img').is(":hidden")){
-						$('#slide_up img').slideUp("slow");
-					}else{
-						$('#slide_up img').hide();
-					}
-				});
-				$('#slide_toggle_btn').click(function(){
-					$('#slide_toggle p').slideToggle()
-					$('#slide_toggle img').slideToggle()
-				});
-				$('#btn_fade_out').click(function(){
-					$('#fade_out p').fadeOut()
-				});
-				$('#fade_in').click(function(){
-					$('#fade_in_div').fadeIn("slow")
-				});
-				$('#add_class_btn').click(function(){
-					$('#add_class p').addClass("blu")
-				});
-				$('#before').click(function(){
-					$('#before').before("<p>more text added before</p>")
-				});
-				$('#after').click(function(){
-					$('#after').after("<p>more text added after</p>")
-					$('#after p:last').append("<p>Appending more text</p>")
-				});
-				$('#data').data("test", {first: 15, last: "pizza!"})
-				$('span:first').text($('#data').data("test").first);
-				$('span:last').text($('#data').data("test").last);
-				var str=$("#text p:first").text();
-				$('p:last').html(str);
-				$('#val input').keyup(function(){
-					var value=$(this).val();
-					$("#val p").text(value);
-				})
-				.keyup();
-				$( "#attr input" )
-				  .change(function() {
-				    var $input = $( this );
-				    $( "#attr p" ).html( ".attr( 'checked' ): <b>" + $input.attr( "checked" ) + "</b><br>" +
-				      ".prop( 'checked' ): <b>" + $input.prop( "checked" ) + "</b><br>" +
-				      ".is( ':checked' ): <b>" + $input.is( ":checked" ) + "</b>" );
-				  })
-				  .change();
-			})
+			});
 		</script>
-		<style>
-			.blu{
-				background-color:blue;
+		<!-- /*<style type="text/css">
+			table{
+				border:1px black solid;
 			}
-			div{
-				text-align:center;
-				border-bottom:black solid;
-				padding:25px;
+			th td{
+				padding-right:10px;
 			}
-		</style>
+			p{
+				display:inline-block;
+			}
+			#container{
+				display:inline-block;
+				width:100%;
+				/*outline:black solid;*/
+				text-align:right;
+			}
+			form{
+				width:35%;
+				/*outline:red dotted;*/
+			}
+			.label{
+				width:150px;
+				text-align:right;
+			}
+			input{
+				width:150px;
+			}
+			button{
+			}
+			h1{
+				border-bottom:black solid 1px;
+				text-align:left;
+			}
+		</style>*/ -->
 	</head>
 	<body>
-		<div id="add_class">
-			<button id="btn_add_class">AddClass</button>
-			<h4>AddClass</h4>
-			<p>Click the button to add class 'red' to this paragraph</p>
-		</div>
-		<div id="slide_toggle">
-			<button id="btn_slide_toggle">Slidetoggle</button>
-			<h4>Slidetoggle</h4>
-			<p>Click the button to slidetoggle a hidden image</p>
-			<p id="st_txt">This is the text that is slide toggled when the user slects the slidetoggle button.</p>
-		</div>
-		<div id="append">
-			<button id="btn_append">Append</button>
-			<h4>Append</h4>
-			<p>Click the button to append a new paragraph</p>
-		</div>
-		<div id="hide">
-			<button id="btn_hide">Hide</button><button id="btn_show">Show</button>
-			<h4>Hide and Show</h4>
-			<p>This text will be hidden if when you click the hide button</p>
-			<p>This text will be shown again when the show button is clicked</p>
-		</div>
-		<div id="toggle">
-			<button id="btn_toggle">Toggle</button>
-			<h4>Toggle</h4>
-			<p>This text will be shown and hidden on toggle</p>
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="slide_dn">
-			<button id="btn_slide_dn">Slide Down</button>
-			<h4>Slide Down</h4>
-			<p style="display:none">Upon click of the slide down button, an image will slide down</p>
-			<img src="./images/broccoliTreeHouse.jpg">
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="slide_up">
-			<button id="slide_up_btn">Slide Up</button>
-			<h4>Slide Up</h4>
-			<p>Upon click of the slide down button, an image will slide up</p>
-			<img src="./images/codepen.png">
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="slide_toggle">
-			<button id="slide_toggle_btn">Slide Toggle</button>
-			<h4>Slide Toggle</h4>
-			<p>Upon click of the slide toggle button, this text will slide/toggle up</p>
-			<img src="./images/broccoliTreeHouse.jpg">
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="fade_out">
-			<button id="btn_fade_out">Fade Out</button>
-			<h4>Fade Out</h4>
-			<p>This text will fade out</p>
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div>
-		<button id="fade_in">Fade In</button>
-		</div>
-		<div style="display:none" id="fade_in_div">
-			<h4>Fade In</h4>
-			<img src="./images/broccoliTreeHouse.jpg">
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="add_class">
-			<button id="add_class_btn">Add Class</button>
-			<h4>Add Class</h4>
-			<p>adding a class to this p tag</p>
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="before">
-			<button id="before">Before</button>
-			<h4>Before</h4>
-			<p>some text to work with js before</p>
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="after">
-			<button id="after">after</button>
-			<h4>after</h4>
-			<p>some text to work with js after</p>
-			<p></p>
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="data">
-			<h4>data</h4>
-			<p>The values stored were <span></span> and <span></span></p>
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="text">
-			<h4>Text</h4>
-			<p><b>Test the</b> text</p>
-			<p></p>
-			<!-- <p>This text will be removed on toggle</p> -->
-		</div>
-		<div id="val">
-			<input id="inVal" type="text" value="some text">
-			<p></p>
-		</div>
-		<div id="attr">
-			<input id="check1" type="checkbox" checked="checked">
-			<label for="check1">Check me</label>
-			<p></p>
+		<div id="container">
+			<table id="tbl">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email Address</th>
+					<th>Contact #</th>
+				</tr>
+				<tbody id="tbod">
+					<tr><td></td></tr>
+				</tbody>
+			</table>
+			<form>
+				<h1>Add User</h1>
+				<p class="label">First Name:</p>
+				<input id="txt_first" type="text" name="txt_first" placeholder="First Name">
+				<p class="label">Last Name:</p>
+				<input id="txt_last" type="text" name="txt_last" placeholder="Last Name">
+				<p class="label">Email Address:</p>
+				<input id="txt_email" type="email" name="txt_email" placeholder="Email Address">
+				<p class="label">Contact No.:</p>
+				<input id="txt_phone" type="text" name="txt_phone" placeholder="Phone #">
+				<button type="button">Add User</button>
+			</form>
 		</div>
 	</body>
 </html>

@@ -1,0 +1,14 @@
+.container{
+  width: 970px;
+}
+.header{
+  border: 2px solid black;
+}
+.header h2{
+  display: inline-block;
+  margin-right: 50px;
+}
+.form_header{
+  border-bottom: 2px solid black;
+  margin-top: 40px;
+}
