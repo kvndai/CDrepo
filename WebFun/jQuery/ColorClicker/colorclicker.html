@@ -20,18 +20,19 @@
           }
           $(document).ready(function(){
              $('#large_box').click(function(){
-                $('#large_box').css('background-color', 'white');
-             })
-             $('#large_box').click(function(){
-                $('#large_box').children().css('background-color', 'random_color');
+                $(this).css('background-color', random_color());
+                $(this).children().css('background-color', random_color());
              })
              //comment this out when you have figured out what event.stopPropagation is used for
              $('.side_box').click(function(event){
                 event.stopPropagation();
+                $(this).siblings().css('background-color', random_color());
+
                 //
              })
              $('.middle_box').click(function(event){
                 event.stopPropagation();
+                $('#large_box').css('background-color', random_color());
              })
           });
       </script>
