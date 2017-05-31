@@ -1,0 +1,7 @@
+.container{
+  width: 970px;
+}
+.cat{
+  width: 200px;
+  display: inline-block;
+}
