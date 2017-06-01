@@ -1,82 +1,14 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Users</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-		<script type="text/javascript">
-			$('document').ready(function(){
-				$('button').on("click", function(){
-					var f_name=$('#txt_first').val()
-					var l_name=$('#txt_last').val()
-					var email=$('#txt_email').val()
-					var phone=$('#txt_phone').val()
-					var str="<tr><td>" + f_name + "</td><td>" + l_name + "</td><td>" + email + "</td><td>" + phone + "</td></tr>";
-
-					$('#tbod').append(str);
-					// $('td').css('text-align', 'center');
-				});
-			});
-		</script>
-		<!-- /*<style type="text/css">
-			table{
-				border:1px black solid;
-			}
-			th td{
-				padding-right:10px;
-			}
-			p{
-				display:inline-block;
-			}
-			#container{
-				display:inline-block;
-				width:100%;
-				/*outline:black solid;*/
-				text-align:right;
-			}
-			form{
-				width:35%;
-				/*outline:red dotted;*/
-			}
-			.label{
-				width:150px;
-				text-align:right;
-			}
-			input{
-				width:150px;
-			}
-			button{
-			}
-			h1{
-				border-bottom:black solid 1px;
-				text-align:left;
-			}
-		</style>*/ -->
-	</head>
-	<body>
-		<div id="container">
-			<table id="tbl">
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email Address</th>
-					<th>Contact #</th>
-				</tr>
-				<tbody id="tbod">
-					<tr><td></td></tr>
-				</tbody>
-			</table>
-			<form>
-				<h1>Add User</h1>
-				<p class="label">First Name:</p>
-				<input id="txt_first" type="text" name="txt_first" placeholder="First Name">
-				<p class="label">Last Name:</p>
-				<input id="txt_last" type="text" name="txt_last" placeholder="Last Name">
-				<p class="label">Email Address:</p>
-				<input id="txt_email" type="email" name="txt_email" placeholder="Email Address">
-				<p class="label">Contact No.:</p>
-				<input id="txt_phone" type="text" name="txt_phone" placeholder="Phone #">
-				<button type="button">Add User</button>
-			</form>
-		</div>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <title>HTTP Request Response</title>
+    <script src="https://code.jquery.com/jquery..."></script>
+  </head>
+  <body>
+    <img src="pokeapi.co/media/img/1.png" alt="bulbasaur"><!-- add http:// before the website name -->
+    <video
+      src="http://a1068.v.phobos.apple.co..."
+      controls></video>
+  </body>
 </html>
