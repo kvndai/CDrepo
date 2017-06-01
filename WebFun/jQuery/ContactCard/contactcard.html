@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Users</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+		<script type="text/javascript">
+			$('document').ready(function(){
+				$(document).on("click", "button", function(){
+					var f_name=$('#txt_first').val()
+					var l_name=$('#txt_last').val()
+					var desc=$('#txt_desc').val()
+					var fullNam=f_name + " " + l_name;
+					var str_front=' <div class="outer_cc_bx" ><div class="cc_bx"><h1>' + fullNam + '</h1><p>Click for description!</p></div><div class="cc_bx" style="display:none"><p>' + desc + '</p></div></div>'
+					//var str_back='<div class="cc_bx_back"><p>' + desc + '</p></div>'
+
+					$('#contact_card_div').append(str_front)
+					//$('.cc_bx').css('border', 'black solid');
+					//$('.cc_bx').css('text-align', 'center');
+					$(".outer_cc_bx").off()
+					$(".outer_cc_bx").click(function(){
+						$(this).children('.cc_bx').toggle();
+					});
+				});
+			});
+		</script>
+		<style type="text/css">
+			table{
+				border:1px black solid;
+			}
+			th td{
+				padding-right:10px;
+			}
+			p{
+				display:inline-block;
+				margin:5px 0;
+			}
+			#container{
+				display:inline-block;
+				width:100%;
+				/*outline:black solid;*/
+				text-align:left;
+			}
+			form{
+				width:35%;
+				/*outline:red dotted;*/
+			}
+			.label{
+				width:150px;
+				text-align:left;
+			}
+			input{
+				width:150px;
+			}
+			#txt_desc{
+				width:300px;
+				height:150px;
+			}
+			button{
+				margin-top:5px;
+			}
+			#contact_card_div{
+				/*outline: red dotted ;*/
+				width: 49%;
+				height: 100%;
+				display:inline-block;
+			}
+			#frm_div{
+				height:100%;
+				/*outline: black dotted;*/
+				width: 50%;
+				display:inline-block;
+			}
+			.cc_bx{
+				border: black solid;
+				text-align:center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div id="frm_div">
+				<form>
+					<p class="label">First Name:</p>
+					<input id="txt_first" type="text" name="txt_first" placeholder="First Name">
+					<p class="label">Last Name:</p>
+					<input id="txt_last" type="text" name="txt_last" placeholder="Last Name">
+					<p class="label">Description:</p>
+					<input id="txt_desc" type="text" name="txt_desc" placeholder="Enter description">
+					<button type="button">Add User</button>
+				</form>
+			</div>
+			<div id="contact_card_div"></div>
+		</div>
+	</body>
+</html>
