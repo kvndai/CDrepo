@@ -15,6 +15,9 @@
 # # the output would be:
 # # hello world
 
-str = "this is string example... wow!!!";
-sub = "is"
-print str.endswith(sub,2,7)
+# str = "this is string example... wow!!!";
+# sub = "is"
+# print str.endswith(sub,2,7)
+# count = 0
+for count in range(0,5):
+    print count
