@@ -1,0 +1,5 @@
+pip install django - installs django
+pip list - lists the packages installed
+pip freeze - lists the packages installed in specific pip format
+pip show - show information on installed packages
+pip search - searches PyPl packages whose name is listed in the search term
