@@ -19,5 +19,15 @@
 # sub = "is"
 # print str.endswith(sub,2,7)
 # count = 0
-for count in range(0,5):
-    print count
+# for count in range(0,5):
+#     print count
+
+def multiply(arr,num):
+    print arr, num
+    for x in arr:
+        x *= num
+        print x
+    return arr
+a = [2,4,10,16]
+b = multiply(a,5)
+print b
