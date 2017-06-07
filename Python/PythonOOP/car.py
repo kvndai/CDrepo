@@ -14,18 +14,18 @@ class car(object):
         print "Fuel: ",self.fuel
         print "Mileage: ",self.mileage
         print "Tax: ",self.tax
-        # return self
+        return self
 
-car1 = car.display_all(2000,"35mph","Full","15mpg")
-# car2 = car.display_all(2000,"5mpg","Not Full","105mpg")
-# car3 = car.display_all(2000,"15mpg","Kind of Full","95mpg")
-# car4 = car.display_all(2000,"25mpg","Full","25mpg")
-# car5 = car.display_all(2000,"45mpg","Empty","25mpg")
-# car6 = car.display_all(2000000,"35mpg","Empty","15mpg")
+car1 = car(2000,"35mph","Full","15mpg")
+car2 = car(2000,"5mpg","Not Full","105mpg")
+car3 = car(2000,"15mpg","Kind of Full","95mpg")
+car4 = car(2000,"25mpg","Full","25mpg")
+car5 = car(2000,"45mpg","Empty","25mpg")
+car6 = car(2000000,"35mpg","Empty","15mpg")
 
 car1.display_all()
-# car2.display_all()
-# car3.display_all()
-# car4.display_all()
-# car5.display_all()
-# car6.display_all()
+car2.display_all()
+car3.display_all()
+car4.display_all()
+car5.display_all()
+car6.display_all()
