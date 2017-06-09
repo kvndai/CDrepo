@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=D:\Documents\CodingDojo\Python\MyEnvironments\flaskEnv"
+set "VIRTUAL_ENV=D:\Documents\CodingDojo\python\myenvironments\flaskenv"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
@@ -9,7 +9,7 @@ if defined _OLD_VIRTUAL_PROMPT (
     )
     set "_OLD_VIRTUAL_PROMPT=%PROMPT%"
 )
-set "PROMPT=(flaskEnv) %PROMPT%"
+set "PROMPT=(flaskenv) %PROMPT%"
 
 REM Don't use () to avoid problems with them in %PATH%
 if defined _OLD_VIRTUAL_PYTHONHOME goto ENDIFVHOME

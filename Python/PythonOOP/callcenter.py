@@ -35,4 +35,4 @@ caller = [calls1,calls2,calls3,calls4]
 
 center = CallCenter(caller)
 
-center.info()
+center.add().subtract()info()
