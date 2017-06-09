@@ -3,16 +3,21 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return render_template("index.html", name="jay")
+  return render_template("index.html")
 
 
 @app.route('/process', methods=['POST'])
 def create_user():
-   print "Got Post Info"
-   name = request.form['name']
-   print request.form['name']
+    print request.form['name']
+    return render_template('result.html',
+    name = request.form['name'],
+    location = request.form['location'],
+    language = request.form['language'],
+    comment = request.form['comment'])
 
-   return redirect('/')
+
+
+
 
 
 app.run(debug=True) # run our server
