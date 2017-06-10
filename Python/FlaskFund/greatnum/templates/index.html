@@ -1,0 +1,34 @@
+<DOCTYPE! html>
+<html>
+    <head>
+      <title>Great Number Game</title>
+       <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='templates/numbergame.css')}}"/>
+    </head>
+    <body>
+      <h3>Welcome to number game</h3>
+      <h4>I am thinking of a number between 1 and 100</h4>
+      <h5>Take a guess</h5>
+      <div>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <ul class=flashes>
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                      <p>{{ message }}</p>
+                    {% elif category == 'success' %}
+                        <p>{{ message }}
+                        <form action="/reset">
+                          <input type="submit" value="Play Again!"><br>
+                        </form>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+              {% endif %}
+          {% endwith %}
+    </div>
+      <form action="/check" method="post">
+        <input type="number" name="guess" placeholder="Take a guess!"/>
+        <input type="submit" value="Submit"/>
+      </form>
+    </body>
+</html>
