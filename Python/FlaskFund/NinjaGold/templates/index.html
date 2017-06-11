@@ -15,6 +15,7 @@
             width:100%;
             height: 130px;
             border: 1px solid silver;
+            overflow: scroll;
         }
     </style>
 </head>
@@ -63,7 +64,9 @@
     <div class="activitiescontainer">
         <p>activities</p>
         <div class="activities">
-            {{ session['ptag'] }}
+            {% for i in session['activity'] %}
+                <p>{{ i }}</p>
+            {% endfor %}
         </div>
     </div>
 

@@ -11,27 +11,23 @@ def index():
 
 @app.route('/process_money', methods=['POST'])
 def process():
-    session['ptag'] = ''
+    if 'activity' not in session:
+        session['activity'] = []
     if request.form['building'] == 'farm':
-        session['rand'] = random.randrange(10,21)
-        session['gold'] += session['rand']
-
-        session['ptag'] += '<p>Earned ' + str(session['rand']) + '</p>'
+        session['gold'] += random.randrange(10, 21)
+        session['activity'].append(session['gold'])
         print session['gold']
     elif request.form['building'] == 'cave':
         session['gold'] += random.randrange(5, 11)
         print session['gold']
-        session['activity'] = []
         session['activity'].append(session['gold'])
     elif request.form['building'] == 'house':
         session['gold'] += random.randrange(2, 5)
         print session['gold']
-        session['activity'] = []
         session['activity'].append(session['gold'])
     elif request.form['building'] == 'casino':
         session['gold'] += random.randrange(-50, 51)
         print session['gold']
-        session['activity'] = []
         session['activity'].append(session['gold'])
     return redirect('/')
 

@@ -18,8 +18,15 @@
                 <option value="mercedes">Mercedes</option>
                 <option value="audi">Audi</option></select>
                 Favorite Language <input type="text" id="language" name="language">
-                Comment (optional) <input type="textarea" id="comment" name="comment">
+                Comment (optional) <textarea name="comment" rows="8" cols="80"></textarea>
                 <input type='submit' value='submit'>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    {% for message in messages %}
+                      <p>{{message}}</p>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
             </form>
         </div>
     </div>
