@@ -28,11 +28,11 @@
 -- WHERE store.store_id = 1 AND city.city_id IN (1, 42, 312, 459)
 
 -- 5.
--- SELECT film.title, film.description, film.release_year, film.rating, film.special_features
--- FROM film
--- JOIN film_actor ON film.film_id = film_actor.film_id
--- JOIN actor ON actor.actor_id = film_actor.actor_id
--- WHERE film.rating like 'G' AND film.special_features like 'behind the scenes' AND actor.actor_id = 15
+SELECT film.title, film.description, film.release_year, film.rating, film.special_features
+FROM film
+JOIN film_actor ON film.film_id = film_actor.film_id
+JOIN actor ON actor.actor_id = film_actor.actor_id
+WHERE film.rating like 'G' AND film.special_features like '%behind the scenes%' AND actor.actor_id = 15
 
 -- 6.
 -- SELECT film.film_id, film.title, actor.actor_id, actor.first_name, actor.last_name
