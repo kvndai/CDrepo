@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="success">
+        <p>The email address you entered {{ session['email'] }} is a VALID email address! Thank you!</p>
+    </div>
+    <div class="list">
+        <ul>Email Addresses Entered:
+          <table>
+            {% for i in emails %}
+            <tr>
+                <td>{{ i['email_address'] }}</td>
+                <td>{{ i['created_at'] }}</td>
+            </tr>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

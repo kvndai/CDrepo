@@ -5,11 +5,21 @@
     <title>Title</title>
 </head>
 <body>
+    <div class="error">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     <div class="container">
         <form action="/process" method="POST">
             Email Address: <input type="text" id="email" name="email">
             <input type="submit" value="Submit">
         </form>
     </div>
+
 </body>
 </html>
