@@ -14,6 +14,13 @@ def index():
 @app.route('/process', methods=['POST'])
 def add():
     session['email'] = request.form['email']
+    check_query = "SELECT EXISTS (SELECT * FROM emails WHERE email_address = '" + session['email'] + "')"
+    show_query = mysql.query_db(check_query)
+    for dict in show_query:
+        for key in dict:
+            if dict[key] == 1:
+                flash('Email already exists in database')
+                return redirect('/')
     if len(session['email']) < 1:
         flash('Invalid Email Address!')
         return redirect('/')

@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, redirect, session, flash
 from mysqlconnection import MySQLConnector
-import re, md5, os, binascii
-EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+import md5
+import re
+import os, binascii
 app = Flask(__name__)
-app.secret_key = 'nfaoinnods'
-mysql = MySQLConnector(app, 'login_registration')
+mysql = MySQLConnector(app,'wall') #database name
+app.secret_key = 'ThisIsSecret'
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 @app.route('/')
 def index():
@@ -57,16 +59,16 @@ def process():
     elif session['password'] != session['confpw']:
         flash('Passwords must match')
         return redirect('/')
-    check_query = "SELECT EXISTS (SELECT * FROM users WHERE email_address = '" + session['email_address'] + "')"
-    show_query = mysql.query_db(query)
+    check_query = "SELECT EXISTS (SELECT * FROM users WHERE email = '" + session['email_address'] + "')"
+    show_query = mysql.query_db(check_query)
     for dict in show_query:
         for key in dict:
             if dict[key] == 1:
                 flash('Email already exists in database')
                 return redirect('/')
 
-    insert_query = "INSERT INTO users(first_name, last_name, email_address, password, salt, created_at, updated_at) VALUES (:first_name, :last_name, :email_address, :hashed_pw, :salt, NOW(), NOW())"
-    query_data = {'first_name': session['first_name'], 'last_name': session['last_name'], 'email_address': session['email_address'], 'hashed_pw': hashed_pw, 'salt': salt}
+    insert_query = "INSERT INTO users(first_name, last_name, email, password, salt, created_at, updated_at) VALUES (:first_name, :last_name, :email_address, :hashed_pw, :salt, NOW(), NOW())"
+    query_data = {'first_name': session['first_name'], 'last_name': session['last_name'], 'email': session['email_address'], 'hashed_pw': hashed_pw, 'salt': salt}
     mysql.query_db(insert_query, query_data)
 
     return redirect('/success')
@@ -76,7 +78,7 @@ def login():
     email = request.form['login_email']
     password = request.form['login_password']
     # query to return email if found on db
-    query = "SELECT * FROM users WHERE email_address = :email LIMIT 1"
+    query = "SELECT * FROM users WHERE email = :email LIMIT 1"
     data = {'email': email}
     output = mysql.query_db(query, data)
     if len(output) != 0:
@@ -92,9 +94,11 @@ def login():
 
     return redirect('/')
 
-@app.route('/success', methods=['GET'])
+@app.route('/wall', methods=['GET'])
 def success():
 
-    return render_template('success.html')
+    return render_template('wall.html')
 
+# @app.route('/message', methods=['POST'])
+# def message():
 app.run(debug=True)
