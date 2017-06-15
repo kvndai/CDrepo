@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, session, flash
 from mysqlconnection import MySQLConnector
+import re, md5, os, binascii
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 app = Flask(__name__)
 app.secret_key = 'nfaoinnods'
-import re
-EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+mysql = MySQLConnector(app, 'login_registration')
 
 @app.route('/')
 def index():
@@ -11,34 +12,38 @@ def index():
 
 @app.route('/register', methods=['POST'])
 def process():
-    session['email'] = request.form['email']
-    session['fname'] = request.form['fname']
-    session['lname'] = request.form['lname']
+    session['email_address'] = request.form['email']
+    session['first_name'] = request.form['fname']
+    session['last_name'] = request.form['lname']
+
     session['password'] = request.form['password']
+    salt = binascii.b2a_hex(os.urandom(15))
+    hashed_pw = md5.new(session['password'] + salt).hexdigest()
+
     session['confpw'] = request.form['confpw']
-    if len(session['email']) < 1 and len(session['fname']) < 1 and len(session['lname']) < 1 and len(session['password']) < 1 and len(session['confpw']) < 1:
+    if len(session['email_address']) < 1 and len(session['first_name']) < 1 and len(session['last_name']) < 1 and len(session['password']) < 1 and len(session['confpw']) < 1:
         flash('Email cannot be blank!')
         flash('First Name cannot be blank!')
         flash('Last Name cannot be blank!')
         flash('Password cannot be blank!')
         flash('Confirm your Password cannot be blank!')
         return redirect('/')
-    if len(session['email']) < 1:
+    if len(session['email_address']) < 1:
         flash('Email cannot be blank!')
         return redirect('/')
     elif not EMAIL_REGEX.match(request.form['email']):
         flash("Invalid Email Address!")
-    if len(session['fname']) < 1:
+    if len(session['first_name']) < 1:
         flash('First Name cannot be blank!')
         return redirect('/')
-    elif session['fname'].isalpha() == False:
-        flash('First name must only contain alphabet characters')
+    elif len(session['first_name']) < 2:
+        flash('First name must be more than 2 letters long')
         return  redirect('/')
-    if len(session['lname']) < 1:
+    if len(session['last_name']) < 1:
         flash('Last Name cannot be blank!')
         return redirect('/')
-    elif session['lname'].isalpha() == False:
-        flash('Last name must only contain alphabet characters')
+    elif len(session['last_name']) < 2:
+        flash('Last name must be more than 2 letters long')
         return redirect('/')
     if len(session['password']) < 1:
         flash('Password cannot be blank!')
@@ -52,11 +57,21 @@ def process():
     elif session['password'] != session['confpw']:
         flash('Passwords must match')
         return redirect('/')
+
+    insert_query = "INSERT INTO users(first_name, last_name, email_address, password, salt, created_at, updated_at) VALUES (:first_name, :last_name, :email_address, :hashed_pw, :salt, NOW(), NOW())"
+    query_data = {'first_name': session['first_name'], 'last_name': session['last_name'], 'email_address': session['email_address'], 'hashed_pw': hashed_pw, 'salt': salt}
+    mysql.query_db(insert_query, query_data)
+
+    return redirect('/success')
+
+@app.route('/login', methods=['POST'])
+def login():
+
     return redirect('/success')
 
 @app.route('/success', methods=['GET'])
 def success():
-    flash('Thank you for submitting')
-    return redirect('/')
+
+    return render_template('success.html')
 
 app.run(debug=True)
