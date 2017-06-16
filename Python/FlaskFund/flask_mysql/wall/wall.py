@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, escape
 from mysqlconnection import MySQLConnector
 import md5
 import re
@@ -12,92 +12,104 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 def index():
     return render_template('index.html')
 
+@app.route('/wall', methods=['GET'])
+def wall():
+    if 'user_id' in session and 'name' in session:
+        return render_template('wall.html')
+    return  redirect('/')
+
+
 @app.route('/register', methods=['POST'])
 def process():
-    session['email_address'] = request.form['email']
-    session['first_name'] = request.form['fname']
-    session['last_name'] = request.form['lname']
+    # because shorter
+    post = request.form
 
-    session['password'] = request.form['password']
-    salt = binascii.b2a_hex(os.urandom(15))
-    hashed_pw = md5.new(session['password'] + salt).hexdigest()
+    # testing post data
+    if 'first_name' in post and 'last_name' in post and 'password' in post and 'confpw' in post:
 
-    session['confpw'] = request.form['confpw']
-    if len(session['email_address']) < 1 and len(session['first_name']) < 1 and len(session['last_name']) < 1 and len(session['password']) < 1 and len(session['confpw']) < 1:
-        flash('Email cannot be blank!')
-        flash('First Name cannot be blank!')
-        flash('Last Name cannot be blank!')
-        flash('Password cannot be blank!')
-        flash('Confirm your Password cannot be blank!')
-        return redirect('/')
-    if len(session['email_address']) < 1:
-        flash('Email cannot be blank!')
-        return redirect('/')
-    elif not EMAIL_REGEX.match(request.form['email']):
-        flash("Invalid Email Address!")
-    if len(session['first_name']) < 1:
-        flash('First Name cannot be blank!')
-        return redirect('/')
-    elif len(session['first_name']) < 2:
-        flash('First name must be more than 2 letters long')
-        return redirect('/')
-    if len(session['last_name']) < 1:
-        flash('Last Name cannot be blank!')
-        return redirect('/')
-    elif len(session['last_name']) < 2:
-        flash('Last name must be more than 2 letters long')
-        return redirect('/')
-    if len(session['password']) < 1:
-        flash('Password cannot be blank!')
-        return redirect('/')
-    elif len(session['password']) >= 8:
-        flash('Password cannot be more than 8 characters')
-        return redirect('/')
-    if len(session['confpw']) < 1:
-        flash('Confirm your Password cannot be blank!')
-        return redirect('/')
-    elif session['password'] != session['confpw']:
-        flash('Passwords must match')
-        return redirect('/')
-    check_query = "SELECT EXISTS (SELECT * FROM users WHERE email = '" + session['email_address'] + "')"
-    show_query = mysql.query_db(check_query)
-    for dict in show_query:
-        for key in dict:
-            if dict[key] == 1:
-                flash('Email already exists in database')
-                return redirect('/')
+        #escape inputs
+        first_name = escape(post['first_name'])
+        last_name = escape(post['last_name'])
+        email = escape(post['email'])
+        password = escape(post['password'])
+        confpw = escape(post['confpw'])
 
-    insert_query = "INSERT INTO users(first_name, last_name, email, password, salt, created_at, updated_at) VALUES (:first_name, :last_name, :email_address, :hashed_pw, :salt, NOW(), NOW())"
-    query_data = {'first_name': session['first_name'], 'last_name': session['last_name'], 'email': session['email_address'], 'hashed_pw': hashed_pw, 'salt': salt}
-    mysql.query_db(insert_query, query_data)
+        err = False
 
-    return redirect('/success')
+        # test for valid inputs
+        if not first_name:
+            err = True
+            flash("Name cannot be blank", "first_name")
+        if not last_name:
+            err = True
+            flas("Name cannot be blank", last_name)
+        if not email:
+            err = True
+            flash("Email cannot be blank", "email")
+        elif not EMAIL_REGEX.match(email):
+            err = True
+            flash("Invalid email address", "email")
+        if not password:
+            err = True
+            flash("Password cannot be blank", "password")
+        if not confpw:
+            err = True
+            flash("Password Confirmation cannot be blank", "passwordConfirm")
+        if password and confpw and password != confpw:
+            err = True
+            flash("Passwords do not match", "password")
+
+        # if there were no errors
+        if not err:
+
+            # encrypt password
+            salt = binascii.b2a_hex(os.urandom(15))
+            hashed_pw = md5.new(password + salt).hexdigest()
+
+            # insert query
+            query = "INSERT INTO users (first_name, last_name, email, password, salt, created_at, updated_at) VALUE ()"
+
+
 
 @app.route('/login', methods=['POST'])
 def login():
-    email = request.form['login_email']
-    password = request.form['login_password']
-    # query to return email if found on db
-    query = "SELECT * FROM users WHERE email = :email LIMIT 1"
-    data = {'email': email}
-    output = mysql.query_db(query, data)
-    if len(output) != 0:
-        encrypted_password = md5.new(password + output[0]['salt']).hexdigest()
-        if output[0]['password'] == encrypted_password:
-            session['userID'] = output[0]['id']
-            print session['userID']
-            return redirect('/success')
-        else:
-            flash('PASSWORD INCORRECT')
-    else:
-        flash('EMAIL DOES NOT EXIST IN DB')
+    # because shorter
+    post = request.form
 
+    # testing post data
+    if 'login_email' in post and 'login_password' in post:
+        # escape inputs
+        email = escape(post['login_email']).lower()
+        password = escape(post['login_password'])
+
+        # test for valid inputs
+        if email and password:
+
+            # see if a user with 'login_email' exists
+            query = "SELECT * FROM users WHERE email = :email"
+            data = {'login_email': email}
+            user = mysql.query_db(query, data)
+
+            # if there is a user with 'login_email'
+            if user:
+
+                # test password
+                if len(user) != 0:
+                    encrypted_password = md5.new(password + user[0]['salt']).hexdigest()
+                    if user[0]['password'] == encrypted_password:
+                        session['userID'] = user[0]['id']
+                        session['first_name'] = user[0]['first_name']
+                        return redirect('/wall')
+            flash('PASSWORD INCORRECT')
+        # set errors for empty inputs
+        else:
+            if not post['login_email']:
+                flash("Email cannot be blank", 'lg_email')
+            if not post['login_password']:
+                flash("Password cannot be blank", 'lg_password')
+    # if no post, redirect
     return redirect('/')
 
-@app.route('/wall', methods=['GET'])
-def success():
-
-    return render_template('wall.html')
 
 # @app.route('/message', methods=['POST'])
 # def message():
