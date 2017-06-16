@@ -1,22 +1,39 @@
 from flask import Flask, render_template, request, redirect, session, flash, escape
 from mysqlconnection import MySQLConnector
-import md5
+from flask.ext.bcrypt import Bcrypt
 import re
-import os, binascii
+
 app = Flask(__name__)
 mysql = MySQLConnector(app,'wall') #database name
+bcrypt = Bcrypt(app)
 app.secret_key = 'ThisIsSecret'
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 @app.route('/')
 def index():
+    if 'user_id' in session and 'name' in session:
+        return redirect('/wall')
     return render_template('index.html')
 
 @app.route('/wall', methods=['GET'])
 def wall():
-    if 'user_id' in session and 'name' in session:
+    if 'user_id' in session and 'first_name' in session:
         return render_template('wall.html')
-    return  redirect('/')
+    return redirect('/')
+
+# MESSAGES / COMMENTS
+
+@app.route('/message', methods=['POST'])
+def message():
+    post = request.form
+
+
+    if 'message' in post:
+        message = escape(post['message'])
+        print message
+
+
+    return redirect('/wall')
 
 
 @app.route('/register', methods=['POST'])
@@ -63,12 +80,20 @@ def process():
         if not err:
 
             # encrypt password
-            salt = binascii.b2a_hex(os.urandom(15))
-            hashed_pw = md5.new(password + salt).hexdigest()
+            encrypted_password = bcrypt.generate_password_hash(password)
 
             # insert query
-            query = "INSERT INTO users (first_name, last_name, email, password, salt, created_at, updated_at) VALUE ()"
+            query = "INSERT INTO users(first_name, last_name, email, password, created_at, updated_at) VALUES (:first_name, :last_name, :email, :password, NOW(), NOW())"
+            data = {'first_name': first_name.lower(), 'last_name': last_name.lower(),'email': email.lower(), 'password': encrypted_password}
+            user_id = mysql.query_db(query, data)
 
+            # set session
+            session['user_id'] = int(user_id)
+            session['first_name'] = first_name
+            return redirect('/wall')
+
+    # if err
+    return redirect('/')
 
 
 @app.route('/login', methods=['POST'])
@@ -77,29 +102,30 @@ def login():
     post = request.form
 
     # testing post data
-    if 'login_email' in post and 'login_password' in post:
+    if 'email' in post and 'password' in post:
         # escape inputs
-        email = escape(post['login_email']).lower()
-        password = escape(post['login_password'])
+        email = escape(post['email']).lower()
+        password = escape(post['password'])
 
         # test for valid inputs
         if email and password:
 
             # see if a user with 'login_email' exists
             query = "SELECT * FROM users WHERE email = :email"
-            data = {'login_email': email}
+            data = {'email': email}
             user = mysql.query_db(query, data)
 
             # if there is a user with 'login_email'
             if user:
 
                 # test password
-                if len(user) != 0:
-                    encrypted_password = md5.new(password + user[0]['salt']).hexdigest()
-                    if user[0]['password'] == encrypted_password:
-                        session['userID'] = user[0]['id']
-                        session['first_name'] = user[0]['first_name']
-                        return redirect('/wall')
+                if bcrypt.check_password_hash(user[0]['password'], password):
+
+                    # set session and go to wall
+                    session['user_id'] = int(user[0]['id'])
+                    session['first_name'] = user[0]['first_name']
+                    return redirect('/wall')
+
             flash('PASSWORD INCORRECT')
         # set errors for empty inputs
         else:
@@ -107,7 +133,7 @@ def login():
                 flash("Email cannot be blank", 'lg_email')
             if not post['login_password']:
                 flash("Password cannot be blank", 'lg_password')
-    # if no post, redirect
+    # if err
     return redirect('/')
 
 
