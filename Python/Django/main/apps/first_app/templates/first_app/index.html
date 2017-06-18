@@ -8,6 +8,7 @@
 
     <h1>Main</h1>
     {{ request.session.name }}
+
     <form action="/new_users" method="POST">
         {% csrf_token %}
         <input type="text" name="first_name"> </input>

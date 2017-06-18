@@ -7,8 +7,11 @@ from django.shortcuts import render, HttpResponse, redirect
 def index(request):
     return render(request, "first_app/index.html")
 
-def show(request):
-    return render(request, 'first_app/showusers.html')
+def show(request, id):
+    context = {
+        'id': id
+    }
+    return render(request, 'first_app/showusers.html', context)
 
 def create(request):
     if request.method == 'POST':
@@ -16,6 +19,6 @@ def create(request):
         print (request.POST)
         print ('*' * 50)
         request.session['name'] = request.POST['first_name']
-        return redirect('/')
+        return redirect('/show')
     else:
         return redirect('/')
