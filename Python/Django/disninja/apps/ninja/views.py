@@ -17,10 +17,10 @@ def ninjacolor(request, color):
         'src': '/static/ninja/images/notapril.jpg'
     }
     ninja_color = {
-        'blue': '/static//ninja/images/leonardo.jpg',
-        'red': '/static//ninja/images/raphael.jpg',
-        'orange': '/static//ninja/images/michelangelo.jpg',
-        'purple': '/static//ninja/images/donatello.jpg'
+        'blue': '/static/ninja/images/leonardo.jpg',
+        'red': '/static/ninja/images/raphael.jpg',
+        'orange': '/static/ninja/images/michelangelo.jpg',
+        'purple': '/static/ninja/images/donatello.jpg'
     }
 
     if color in ninja_color:
