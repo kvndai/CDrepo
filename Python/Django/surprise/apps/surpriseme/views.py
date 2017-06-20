@@ -20,4 +20,5 @@ def results(request):
     context = {
         'pp': VALUES[: request.session['a']]
     }
+    print VALUES
     return render(request, 'surpriseme/results.html', context)
