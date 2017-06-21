@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+        </tr>
+
+        {% for i in blah %}
+             <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.title }}</td>
+                <td>{{ i.author }}</td>
+                <td>{{ i.category }}</td>
+             </tr>
+        {% endfor %}
+
+
+    </table>
+    <form action="process" method="POST">
+        {% csrf_token %}
+        <h3>Add a book</h3>
+        <p>Title:</p>
+        <input type="text" name="title">
+        <p>Category:</p>
+        <input type="text" name="category">
+        <p>Author:</p>
+        <input type="text" name="author">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
