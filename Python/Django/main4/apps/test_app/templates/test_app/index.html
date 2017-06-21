@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Hello</h1>
+    <form action="/blogs" method="POST">
+        {% csrf_token %}
+        <labe>Title</labe>
+        <input type="text" name="title">
+        <textarea name="blog" rows="8" cols="40"> </textarea>
+        <input type="submit" value="Enter Blog">
+    </form>
+    {% for i in blah %}
+        <h5>{{ i.title }}</h5>
+        <p>{{ i.blog }}</p>
+    {% endfor %}
+</body>
+</html>
