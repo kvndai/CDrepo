@@ -17,3 +17,8 @@ def blogs(request):
     # INSERT INTO class Blog (title, blog, created_at, updated_at) VALUES (title, blog, created_at, updated_at)
 
     return redirect('/')
+
+def comments(request, id):
+    blog = Blog.objects.get(id=id)
+    Comment.objects.create(comment=request.POST['comment'], blog=blog)
+    return redirect('/')

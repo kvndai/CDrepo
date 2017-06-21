@@ -6,13 +6,21 @@
 </head>
 <body>
     <h1>Hello</h1>
-    <form action="/blogs" method="POST">
+
+     <form action="/comments/{{ blog.id }}" method="post">
+        {% csrf_token %}
+        <textarea name="comment" rows="8" cols="80"></textarea>
+        <input type="submit" value="Enter Comment on This Blog">
+    </form>
+
+     <form action="/blogs" method="POST">
         {% csrf_token %}
         <labe>Title</labe>
         <input type="text" name="title">
         <textarea name="blog" rows="8" cols="40"> </textarea>
         <input type="submit" value="Enter Blog">
     </form>
+
     {% for i in blah %}
         <h5>{{ i.title }}</h5>
         <p>{{ i.blog }}</p>
