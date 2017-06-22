@@ -10,15 +10,13 @@ def index(request):
     return render(request, 'userval/index.html')
 
 def process(request):
-    postData = request.POST['name']
-    results = User.objects.login(postData)
+    results = User.objects.validUser(request.POST)
     print results
-    if 'good' in results:
-        User.objects.create(username=blah)
+    if results['status']:
+        username = results['data'].username
         return redirect('/success')
-    if 'error' in results:
-        messages.error(request, 'ERROR')
-    return redirect('/')
+    else:
+        return redirect('/')
 
 def success(request):
     context = {

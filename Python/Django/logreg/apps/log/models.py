@@ -10,7 +10,7 @@ NAME_REGEX =re.compile('^[A-z]+$')
 class UserManager(models.Manager):
     def register(self, postData):
         errors = []
-
+        print '1'
         if User.objects.filter(email=postData['email']):
             errors.append('Email is already registered')
 
@@ -32,12 +32,12 @@ class UserManager(models.Manager):
         if len(postData['password']) < 8:
             errors.append('Password must be at least 8 characters')
 
-        elif postData['password'] != postData['confirm']:
+        elif postData['password'] != postData['confpw']:
             errors.append('Passwords do not match')
 
         if len(errors) == 0:
             User.objects.create(first_name=postData['first_name'], last_name=postData['last_name'], email=postData['email'], password=postData['password'])
-
+        print '2'
         return errors
 
     def login(self, postData):

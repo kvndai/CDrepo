@@ -10,34 +10,27 @@ def index(request):
     return render(request, 'log/index.html')
 
 def register(request):
-    postData = {
-        'first_name': request.POST['first_name'],
-        'last_name': request.POST['last_name'],
-        'email': request.POST['email'],
-        'password': request.POST['password'],
-        'confirm': request.POST['confpw']
-    }
-
-    errors = User.objects.register(postData)
+    errors = User.objects.register(request.POST)
+    print '3'
+    print errors
     if len(errors) == 0:
-        request.session['id'] = User.objects.filter(email=postData['email'])[0].id
-        request.session['name'] = postData['first_name']
+        request.session['id'] = User.objects.filter(email=request.POST['email'])[0].id
+        request.session['name'] = request.POST['first_name']
+        print '4'
         return redirect('/success')
     else:
         for error in errors:
             messages.info(request, error)
+        print 'error check'
         return redirect('/')
 
 
 def login(request):
-    postData = {
-        'email': request.POST['email'],
-        'password': request.POST['password']
-    }
-    errors = User.objects.login(postData)
+    errors = User.objects.login(request.POST)
+
     if len(errors) == 0:
-        request.session['id'] = User.objects.filter(email=postData['email'])[0].id
-        request.session['name'] = User.objects.filter(email=postData['email'])[0].first_name
+        request.session['id'] = User.objects.filter(email=request.POST['email'])[0].id
+        request.session['name'] = User.objects.filter(email=request.POST['email'])[0].first_name
         return redirect('/success')
     for error in errors:
         messages.info(request, error)
