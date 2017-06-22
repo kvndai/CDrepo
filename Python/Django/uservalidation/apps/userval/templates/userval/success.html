@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <p>Usernames entered:</p>
+    {% for i in ok %}
+        <tr>
+            <td>{{ i.username }}</td>
+            <td>{{ i.created_at }}</td>
+        </tr>
+    {% endfor %}
+</body>
+</html>
