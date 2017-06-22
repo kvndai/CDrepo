@@ -5,9 +5,9 @@ from django.db import models
 
 # Create your models here.
 class UserManager(models.Manager):
-    def login(self, blah):
+    def login(self, postData):
 
-        if len(blah) < 8 or len(blah) > 26:
+        if len(postData) < 8 or len(postData) > 26:
             return 'error'
 
         return 'good'

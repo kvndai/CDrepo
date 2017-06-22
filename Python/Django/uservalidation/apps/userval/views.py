@@ -10,8 +10,8 @@ def index(request):
     return render(request, 'userval/index.html')
 
 def process(request):
-    blah = request.POST['name']
-    results = User.objects.login(blah)
+    postData = request.POST['name']
+    results = User.objects.login(postData)
     print results
     if 'good' in results:
         User.objects.create(username=blah)
