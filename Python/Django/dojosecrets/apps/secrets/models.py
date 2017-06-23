@@ -59,7 +59,20 @@ class User(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
     password = models.CharField(max_length=255)
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
-
+    createdAt = models.DateField(auto_now_add=True)
+    updatedAt = models.DateField(auto_now=True)
     objects = UserManager()
+
+class Secret(models.Model):
+    info = models.TextField(max_length=1000)
+    like_count = models.IntegerField(default=0)
+    user = models.ForeignKey(User, related_name='users')
+    createdAt = models.DateField(auto_now_add=True)
+    updatedAt = models.DateField(auto_now=True)
+
+class Like(models.Model):
+    secret = models.ForeignKey(Secret, related_name='likes')
+    user = models.ForeignKey(Users, related_name='users')
+    createdAt = models.DateField(auto_now_add=True)
+    updatedAt = models.DateField(auto_now=True)
+
