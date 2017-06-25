@@ -31,7 +31,7 @@
         <h1>Welcome!</h1>
     <div class="register">
         <h3>Register Here!</h3>
-        <form action="/register", method="POST">
+        <form action="/create", method="POST">
             {% csrf_token %}
             <p>Email: <input type="text" name="email"></p>
             <p>First Name: <input type="text" name="first_name"></p>

@@ -47,10 +47,6 @@ class UserManager(models.Manager):
         return errors
 
 
-
-
-
-
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -59,3 +55,42 @@ class User(models.Model):
     createdAt = models.DateField(auto_now_add=True)
     updatedAt = models.DateField(auto_now=True)
     objects = UserManager()
+
+class AuthorManager(models.Manager):
+    def authorcheck(self, postData):
+        errors = []
+        if Author.objects.filter(name=postData['name']):                    # check if author already exists in DB
+            errors.append('Author already exists! Please select from list')
+        if len(postData['booktitle']) < 2:                                  # book title must be at least 2 char long
+            errors.append('Title must be at least 2 characters')
+        if len(postData['review']) < 10:
+            errors.append('Review must be at least 10 characters')
+        if len(postData['first_name']) < 2:
+            errors.append('First name must be at least 2 characters')
+        elif not NAME_REGEX.match(postData['first_name']):
+            errors.append('First name can only be alphabet')
+        if len(postData['last_name']) < 2:
+            errors.append('Last name must be at least 2 characters')
+        elif not NAME_REGEX.match(postData['last_name']):
+            errors.append('Last name can only be alphabet')
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    createdAt = models.DateField(auto_now_add=True)
+    updatedAt = models.DateField(auto_now=True)
+        
+
+class Book(models.Model):
+    title = models.CharField(max_length=30)
+    author = models.ForeignKey(Author)
+    createdAt = models.DateField(auto_now_add=True)
+    updatedAt = models.DateField(auto_now=True)
+
+class Review(models.Model):
+    review = models.TextField(max_length=1000)
+    rating = models.IntegerField()
+    user = models.ForeignKey(User)
+    book = models.ForeignKey(Book)
+    createdAt = models.DateField(auto_now_add=True)
+    updatedAt = models.DateField(auto_now=True)
