@@ -6,17 +6,23 @@
 </head>
 <body>
     <div class="header">
-        <h4>Welcome, {{request.session.name}}</h4>
+        <h4>Welcome, {{users.name}}</h4>
         <a href="/books/add">Add Book and Review</a>
         <a href="">Logout</a>
     </div>
     <div class="recent">
         <h4>Recent Book Reivews:</h4>
-
+        {%for review in reviews%}
+            <a href="books/{{review.book.id}}">{{review.book.title}}</a>
+            <p><a href="user/{{review.user.id}}">{{review.user.first_name}}</a> says: {{review.review}}</p>
+            <p>Posted on: {{review.createdAt}}</p>
+        {%endfor%}
     </div>
     <div class="other">
         <h4>Other Book with Reviews</h4>
-
+        {%for book in books%}
+        <a href="/books/{{book.id}}">{{book.title}}</a>
+        {%endfor%}
     </div>
 </body>
 </html>

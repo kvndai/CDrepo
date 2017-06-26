@@ -33,9 +33,9 @@ class UserManager(models.Manager):
         elif postData['password'] != postData['confpw']:                    # check if password entered matches confpw field
             errors.append('Passwords do not match')
 
-        if len(errors) == 0:            # IF the length of errors list is 0 (no errors in the list)
+        if len(errors) == 0:                                                # IF the length of errors list is 0 (no errors in the list)
             User.objects.create(first_name=postData['first_name'], last_name=postData['last_name'], email=postData['email'], password=postData['password'])
-        return errors                   # create the User instance. Return errors [] list
+        return errors                                                       # create the User instance. Return errors [] list
 
     def login(self, postData):
         errors = []                                                         # create empty list to hold error msgs
@@ -56,33 +56,18 @@ class User(models.Model):
     updatedAt = models.DateField(auto_now=True)
     objects = UserManager()
 
-class AuthorManager(models.Manager):
-    def authorcheck(self, postData):
-        errors = []
-        if Author.objects.filter(name=postData['name']):                    # check if author already exists in DB
-            errors.append('Author already exists! Please select from list')
-        if len(postData['booktitle']) < 2:                                  # book title must be at least 2 char long
-            errors.append('Title must be at least 2 characters')
-        if len(postData['review']) < 10:
-            errors.append('Review must be at least 10 characters')
-        if len(postData['first_name']) < 2:
-            errors.append('First name must be at least 2 characters')
-        elif not NAME_REGEX.match(postData['first_name']):
-            errors.append('First name can only be alphabet')
-        if len(postData['last_name']) < 2:
-            errors.append('Last name must be at least 2 characters')
-        elif not NAME_REGEX.match(postData['last_name']):
-            errors.append('Last name can only be alphabet')
+    def __str__(self):
+        return str(self.id) + ' - ' + self.first_name + ' ' + self.last_name + ' - ' + self.email + ' - ' + self.password
+
 
 class Author(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     createdAt = models.DateField(auto_now_add=True)
     updatedAt = models.DateField(auto_now=True)
         
 
 class Book(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=255)
     author = models.ForeignKey(Author)
     createdAt = models.DateField(auto_now_add=True)
     updatedAt = models.DateField(auto_now=True)

@@ -19,11 +19,12 @@
                 <p>Author:</p>
                 <p>Choose from the list: </p>
                 <select name="listauthor">
-                    <option value="#"></option>
+                    {%for author in authors%}
+                    <option value="{{author.name}}">{{author.name}}</option>
+                    {%endfor%}
                 </select>
                 <p>Or add a new author: </p>
-                <input type="text" name="first_name">
-                <input type="text" name="last_name">
+                <input type="text" name="name">
                 <p>Review</p>
                 <textarea rows="8" cols="30" name="review"></textarea>
                 <p>Rating: </p>

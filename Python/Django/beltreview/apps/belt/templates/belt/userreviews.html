@@ -12,14 +12,17 @@
             <a href="">Logout</a>
         </div>
         <div>
-        <p>User Alias: </p>
-        <p>Name: </p>
-        <p>Email: </p>
-        <p>Total Reviews: </p>
+        <p>Name: {{users.first_name}}</p>
+        <p>Email: {{users.email}}</p>
+        <p>Total Reviews: {{total}}</p>
         </div>
         <div>
             <p>Posted Reviews on the following books:</p>
-
+            {%for review in reviews%}
+            <ul>
+                <li><a href="/books/{{review.book.id}}"></a>{{review.book.title}}</li>
+            </ul>
+            {%endfor%}
         </div>
     </body>
 </html>

@@ -11,18 +11,24 @@
             <a href="">Logout</a>
         </div>
         <div class="heading">
-            <!--Book Name-->
-            <p>Author: </p>
+            {{books.title}}
+            <p>Author: {{books.author.name}}</p>
         </div>
         <div class="reviews">
             <h4>Reviews:</h4>
+            {%if reviews%}
+            {%for review in reviews%}
+            <p><a href="/user/{{review.user.id}}">{{review.user.first_name}}</a> says: {{review.review}}</p>
+            <p>Posted on: {{review.createdAt}}</p>
+            {%endfor%}
+            {%endif%}
 
         </div>
         <div class="addreview2">
             <p>Add a review:</p>
-            <form action="/books/submit" method="POST">
+            <form action="/create/review/{{books.id}}" method="POST">
                 {% csrf_token %}
-                <textarea rows="8" cols="15"></textarea>
+                <textarea rows="8" cols="15" name="review"></textarea>
                 <p>Rating:</p>
                 <select name="rating">
                     <option value="1">1</option>
