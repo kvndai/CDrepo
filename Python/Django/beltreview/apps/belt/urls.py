@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^books/submit$', views.books_submit),              # Routing
     url(r'^create/review/(?P<id>\d+)$', views.createreview), # Routing
     url(r'^create$', views.create),                          # Routing
-    url(r'^login$', views.login)                             # Routing
+    url(r'^login$', views.login),                            # Routing
+    url(r'^delete/(?P<id>\d+)$', views.delete)               # Routing
     ]

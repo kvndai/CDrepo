@@ -68,14 +68,14 @@ class Author(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
-    author = models.ForeignKey(Author)
+    author = models.ForeignKey(Author, related_name='curr_author')
     createdAt = models.DateField(auto_now_add=True)
     updatedAt = models.DateField(auto_now=True)
 
 class Review(models.Model):
     review = models.TextField(max_length=1000)
     rating = models.IntegerField()
-    user = models.ForeignKey(User)
-    book = models.ForeignKey(Book)
+    user = models.ForeignKey(User, related_name='curr_user')
+    book = models.ForeignKey(Book, related_name='curr_book')
     createdAt = models.DateField(auto_now_add=True)
     updatedAt = models.DateField(auto_now=True)

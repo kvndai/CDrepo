@@ -28,18 +28,35 @@ def books_add(request):
 
 def books_submit(request):
     if request.method == "POST":
+        book = Book.objects.get(title=request.POST['booktitle'])
         if request.POST['name'] > "":
-            author = Author.objects.create (name=request.POST['name'])
-            book = Book.objects.create(title=request.POST['booktitle'], author=author)
-            user = User.objects.get(id=request.session['id'])
-            Review.objects.create(book=book, review=request.POST['review'], rating=request.POST['rating'], user=user)
-            return redirect('/books/'+str(book.id))
+            if book:
+                author = Author.objects.create (name=request.POST['name'])
+                user = User.objects.get(id=request.session['id'])
+                Review.objects.create(book=book, review=request.POST['review'], rating=request.POST['rating'], user=user)
+                return redirect('/books/'+str(book.id))
+            else:
+                author = Author.objects.create (name=request.POST['name'])
+                book = Book.objects.create(title = request.POST['title'], author=author)
+                user = User.objects.get(id=request.session['id'])
+                Review.objects.create(book=book, review=request.POST['review'], rating=request.POST['rating'], user=user)
+                return redirect('/books/'+str(book.id))
         if request.POST['name'] == "":
-            author = Author.objects.create (name=request.POST['listname'])
-            book = Book.objects.create(title = request.POST['title'], author=author)
-            user = User.objects.get(id=request.session['id'])
-            Review.objects.create(book=book, review=request.POST['review'], rating=request.POST['rating'], user=user)
-            return redirect('/books/'+str(book.id))
+            if book:
+                author = Author.objects.create (name=request.POST['listname'])
+                user = User.objects.get(id=request.session['id'])
+                Review.objects.create(book=book, review=request.POST['review'], rating=request.POST['rating'], user=user)
+                return redirect('/books/'+str(book.id))
+            else:
+                author = Author.objects.create (name=request.POST['listname'])
+                book = Book.objects.create(title = request.POST['title'], author=author)
+                user = User.objects.get(id=request.session['id'])
+                Review.objects.create(book=book, review=request.POST['review'], rating=request.POST['rating'], user=user)
+                return redirect('/books/'+str(book.id))
+
+def delete(request, id):
+    Review.objects.filter(book = id).delete()
+    return redirect('/books')
 
 def createreview(request, id):
     book = Book.objects.get(id=id)
