@@ -5,7 +5,7 @@ function Ninja(name){
     this.health = 100;
 
     this.sayName = function(){
-        console.log(name);
+        console.log(this.name);
         return this;
     }
     this.showStats = function(){
