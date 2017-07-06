@@ -6,7 +6,7 @@ class Deck{
         this.createDeck()
     }
     createDeck(){
-        if (this.cards.length == 0){
+        if (this.cards.length == 0){                                    // comment out if need to create more than 1 deck
             for (var suit = 0; suit < this.suits.length; suit++){
                 for (var i = 0; i < this.nums.length; i++){
                     this.cards.push([this.nums[i], this.suits[suit]]);
@@ -32,7 +32,7 @@ class Deck{
         }
         return this;
     }
-    dealRandomCard(){                   // must shuffle first, will only deal 1st card in array
+    dealRandomCard(){                       // must shuffle first, will only deal 1st card in array
         if(this.cards.length > 0){
             return this.cards.shift();
         }
