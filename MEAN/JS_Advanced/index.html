@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <script>
+        var _ = {
+            map: function(list, callback) {
+                let arr = [];
+                for(let i = 0; i < list.length; i++){
+                    arr.push(callback(list[i]));
+                }
+                return arr;
+            },
+            reduce: function(list, callback) { 
+                let memo = 0
+                for(let i = 0; i < list.length; i++){
+                    memo = callback(memo, list[i]);
+                }
+                return memo
+            },
+            find: function(list, callback) {   
+                let arr = [];
+                for(let i = 0; i < list.length; i++){
+                    if(callback(list[i])){
+                        arr.push(list[i]);
+                        return arr;
+                    }
+                }
+            },
+            filter: function(list, callback) { 
+                let arr = [];
+                for(let i = 0; i < list.length; i++){
+                    if(callback(list[i])){
+                        arr.push(list[i]);    
+                    }  
+                } 
+                return arr;
+            },
+            reject: function(list, callback) { 
+                let arr = [];
+                for(let i = 0; i < list.length; i++){
+                    if(!callback(list[i])){
+                        arr.push(list[i]);
+                    }
+                }
+                return arr;
+            }
+        }
+
+        var evens = _.filter([1, 2, 3, 4, 5, 6], isEven);
+        console.log(evens); // if things are working right, this will return [2,4,6].
+
+        var odds = _.reject([1, 2, 3, 4, 5, 6], isEven);
+        console.log(odds) // output [1, 3, 5]
+        
+        var even = _.find([1, 2, 3, 4, 5, 6], isEven);
+        console.log(even); // output 2
+
+        var mapp = _.map([1,3,5,7], map);
+        console.log(mapp); // output 3,9,15,21
+
+        var sum = _.reduce([1, 2, 3], summation);
+        console.log(sum); // output 6
+
+
+        function isEven(num){ 
+            return num % 2 == 0; 
+        }
+
+        function summation(memo, num){
+            return memo + num;
+        }
+
+        function map(num){ 
+            return num * 3; 
+        }
+    </script>
+    <body>
+    
+    </body>
+</html>
