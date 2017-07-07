@@ -1,0 +1,15 @@
+.register{
+            width:350px;
+            display: inline-block;
+            border:1px solid silver;
+            vertical-align: top;
+            padding: 10px;
+        }
+        
+.login{
+            width:350px;
+            display: inline-block;
+            border:1px solid silver;
+            vertical-align: top;
+            padding: 10px;
+}
