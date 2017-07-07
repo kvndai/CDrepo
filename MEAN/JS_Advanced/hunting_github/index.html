@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    </head>
+    <body>
+        <script>
+        $(document).ready(function(){
+            $('button').on('click',function(){
+                $.get("https://api.github.com/users/kvndai", function(data) {
+                    console.log(data.login);
+                    document.getElementById('btn').innerHTML+= `<h1>${data.login}</h1>`
+                    }, "json");
+            });
+        });
+        </script>
+
+        <div id='btn'>
+            
+        </div>
+        <button type="button" name='button'>Click me</button>
+    </body>
+</html>
