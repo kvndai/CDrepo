@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document). ready(function (){
+            // this triggers the connection event in our server!
+            var socket  = io.connect();
+            // we'll write all the socket stuff after the above line!
+            var name = prompt('Please enter your name')
+            socket.emit('got_new_user', {name: name});
+            // $('#epic').click(function (e){
+            //     // Emitting to server
+            //     e.preventDefault();
+            //     socket.emit("user_click");
+            //     console.log('clicked');
+            //     return false;
+            // });
+            // $('#reset').click(function (e){
+            //     // Emitting to server
+            //     e.preventDefault();
+            //     socket.emit("user_reset_click");
+            //     console.log('clicked');
+            //     return false;
+            // });
+            // // Receiving emit from server
+            // socket.on('number', function (data){
+            //     console.log(data);
+            //     $('#counter').html(`<p>${data}</p>`);
+            // });
+            // socket.on('reset', function(data){
+            //     console.log(data);
+            //     $('#counter').html(`<p>${data}</p>`);
+            // })
+        })
+    </script>
+</head>
+<style type="text/css">
+    #container {
+        width: 400px;
+        border: 2px solid grey;
+        height: 400px;
+    }
+    #text_bar {
+        width: 350px;
+    }
+</style>
+    <body>
+        <h1>Conversation Board</h1>
+        <div id='container'>
+            
+        </div>
+        <form id="message_form" action="" >
+            <input id='text_bar' type="text" name="message" placeholder="Enter a message:">
+            <input type="submit" name=submit value="Send">
+        </form>
+    </body>
+</html>
