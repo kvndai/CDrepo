@@ -12,30 +12,25 @@
             // we'll write all the socket stuff after the above line!
             var name = prompt('Please enter your name')
             socket.emit('got_new_user', {name: name});
-            // $('#epic').click(function (e){
-            //     // Emitting to server
-            //     e.preventDefault();
-            //     socket.emit("user_click");
-            //     console.log('clicked');
-            //     return false;
-            // });
-            // $('#reset').click(function (e){
-            //     // Emitting to server
-            //     e.preventDefault();
-            //     socket.emit("user_reset_click");
-            //     console.log('clicked');
-            //     return false;
-            // });
-            // // Receiving emit from server
-            // socket.on('number', function (data){
-            //     console.log(data);
-            //     $('#counter').html(`<p>${data}</p>`);
-            // });
-            // socket.on('reset', function(data){
-            //     console.log(data);
-            //     $('#counter').html(`<p>${data}</p>`);
-            // })
-        })
+            socket.on('added_user', function(data) {
+                for (var index = 0; index < data.messages.length; index++) {
+                    $('#chat').append(data.messages[index]);
+                }
+            })
+            socket.on('update_chat', function(data){
+                console.log(data);
+                $('#chat').append(`<p> ${data.name} has joined.</p>`);
+            })
+            $('form').submit(function (e){
+                e.preventDefault();
+                form_message = name + " says: " + $('#text_bar').val();
+                console.log(form_message);
+                socket.emit("post_message",{message: form_message});
+            });
+            socket.on('update_message', function(data){
+                $('#chat').append(`<p> ${data.messages} </p>`)
+            })
+        });
     </script>
 </head>
 <style type="text/css">
@@ -47,13 +42,19 @@
     #text_bar {
         width: 350px;
     }
+    #chat{
+        height: 400px;
+        overflow: scroll;
+    }
 </style>
     <body>
         <h1>Conversation Board</h1>
         <div id='container'>
-            
+            <div id='chat'>
+
+            </div>
         </div>
-        <form id="message_form" action="" >
+        <form id="message_form" action="">
             <input id='text_bar' type="text" name="message" placeholder="Enter a message:">
             <input type="submit" name=submit value="Send">
         </form>

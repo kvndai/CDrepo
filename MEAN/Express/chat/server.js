@@ -18,21 +18,35 @@ var server  = app. listen(8000, function() {
 });
 
 // SOCKETS
-
+var messages = ['<p> Chatroom Started </p>'];
+var users = {};
 var io  =  require('socket.io'). listen(server);
 io.sockets.on('connection', function (socket) {
     console.log("Sockets Active");
     console.log(socket.id);
     // all the socket code goes in here!
+    
     socket.on('got_new_user', function(data){
-        console.log(data);
+        var user = data.name;
+        console.log('new user name: '+ user)
+        id = socket.id;
+        users[id] = user;
+        socket.emit('added_user', {messages: messages});
+        socket.broadcast.emit('update_chat', {name: user});
     })
-    // socket.on("user_click", function(){
-    //     count ++;
-    //     io.sockets.emit('number', count);
-    // })
-    // socket.on("user_reset_click", function(){
-    //     count = 0;
-    //     io.sockets.emit('reset', count);
-    // })
+    
+    socket.on("post_message",function(data){
+        console.log('message: '+ data);
+        messages.push(`<p> ${data.message} </p>`);
+        var chat = data.message;
+        io.emit("update_message", {messages: chat})
+    })
+
+    socket.on("disconnect", function(){
+        console.log('dc user id: '+ socket.id);
+        this_name = users[socket.id];
+        console.log('dc user name: '+ this_name);
+        var dis = `${this_name} has disconnected.`;
+        io.emit("update_message", {messages: dis});
+    });
 })
