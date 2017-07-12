@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function (){
+                document.getElementById('to_quotes').onclick = function() {
+                    location.href = '/quotes';
+                };
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Welcome to Quoting Dojo!</h1>
+        <form action="/quotes" method="POST">
+            <p>Your Name: </p>
+            <p><input type="text" name="name"></p>
+            <p>Your quote: </p>
+            <p><textarea name="quote" rows="4" cols="50"></textarea></p>
+            <input type="submit" value="Add my Quote!">
+            <button type="button" id="to_quotes">Skip to Quotes!</button>
+        </form>
+    </body>
+</html>
