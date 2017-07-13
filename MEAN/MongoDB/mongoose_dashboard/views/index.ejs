@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script type="text/javascript">
+      $(document).ready(function() {
+         document.getElementById('create').onclick = function() {
+            location.href = '/create';
+         };
+      });
+   </script>
+   <title>Document</title>
+</head>
+
+<body>
+   <h2 id="header">Look at all these Mongeese</h2>
+   <% for (var i = 0; i < mongoose.length; i++) { %>
+      <p>Mongoose #:
+         <%= i+1 %>
+      </p>
+      <p>Name:
+         <%= mongoose[i].name %>
+      </p>
+      <p>Age:
+         <%= mongoose[i].age %>
+      </p>
+      <a href="/<%= mongoose[i]._id %>"><button>Learn more about <%= mongoose[i].name %></button></a>
+      <a href="/edit/<%= mongoose[i]._id %>"><button>Edit</button></a>
+      <% } %>
+         <p><button id="create">Add a Mongoose</button></p>
+
+</body>
+
+</html>

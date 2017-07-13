@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script type="text/javascript">
+      $(document).ready(function() {
+         document.getElementById('main').onclick = function() {
+            location.href = '/';
+         };
+      });
+   </script>
+</head>
+
+<body>
+   <h1>create mongoose here</h1>
+   <form action="/create" method="post">
+      Mongoose Name: <input type="text" name="name"><br> Mongoose Age: <input type="number" name="age"><br>
+      <input type="submit" value="Add">
+   </form>
+   <button id="main">Mongoose List</button>
+</body>
+
+</html>
