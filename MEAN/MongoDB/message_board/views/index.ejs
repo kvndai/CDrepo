@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+</head>
+<style type="text/css">
+   .heading {
+      border-bottom: 2px solid black;
+   }
+   .message{
+      margin-left: : 15px;
+   }
+   .commentbox{
+      margin-left: : 30px;
+   }
+</style>
+
+<body>
+   <h1 class="heading">The Dojo Message Board</h1>
+   <div class="form">
+
+      <form action="/new" method="post">
+         <div class="name">Name:</div>
+         <input type="text" name="name">
+         <div class="messageInput">Message</div>
+         <textarea name="message_text" rows="8" cols="80"></textarea>
+         <input type="submit" name="submit">
+      </form>
+   </div>
+
+   <div class="message">
+      <% if(typeof(errors) != 'undefined' ) { %>
+         <% for (var x in errors) { %>
+            <h3><%= errors[x].message %></h3>
+         <% } %>
+      <% } %>
+   </div>
+   <div class="commentbox">
+      <% for (var i = 0; i < messages.length; i++) { %>
+         <h4>Name: <%= messages[i].name %></h4>
+         <p>Message: <%= messages[i].message_text %></p>
+         <form action="/delete/<%= messages[i]._id %>" method="post">
+            <input type="submit" name="submit" value="delete">
+         </form>
+         <% for (var j = 0; j < messages[i]['comments'].length; j++) { %>
+                <p>Name: <%= messages[i]['comments'][j].name %></p>
+                <p>Comment: <%= messages[i]['comments'][j].comment_text %></p>
+                <p>~ ~ ~</p>
+            <% } %>
+         <form action="/new/comment/<%= messages[i]._id %>" method="post">
+            <p>Name: </p>
+            <input type="text" name="name">
+            <p>Comment: </p>
+            <textarea name="comment_text" rows="8" cols="80"></textarea>
+            <input type="submit" name="submit">
+         </form>
+         <% } %>
+      </div>
+</body>
+
+</html>

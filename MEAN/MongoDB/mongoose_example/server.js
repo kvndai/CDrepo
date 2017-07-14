@@ -95,10 +95,7 @@ app.get('/edit/:id', function(req, res) {
 // create mongoose form post request
 app.post('/create', function(req, res) {
    console.log("POST DATA", req.body);
-   var mongoose = new Mongooses({
-      name: req.body.name,
-      age: req.body.age
-   });
+   var mongoose = new Mongooses(req.body);
    console.log(mongoose);
    mongoose.save(function(err) {
       if (err) {
@@ -130,7 +127,7 @@ app.post('/edit/:id', function(req, res) {
    });
 });
 
-// deleted mongoose route
+// devared mongoose route
 app.post('/edit/delete/:id', function(req, res) {
    Mongooses.deleteOne({
       _id: req.params.id
