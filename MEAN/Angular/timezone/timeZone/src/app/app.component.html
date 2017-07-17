@@ -1,0 +1,12 @@
+<div class="header">
+   <h1>US Time Zone Display</h1>
+</div>
+<div class="inputs">
+   <button [ngClass]="btn_color[0]? 'yellow' : 'none'" (click)='datePST()' name="pst">PST</button>
+   <button [ngClass]="btn_color[1]? 'yellow' : 'none'" (click)='dateMST()' type="button" name="mst">MST</button>
+   <button [ngClass]="btn_color[2]? 'yellow' : 'none'" (click)='dateCST()' type="button" name="cst">CST</button>
+   <button [ngClass]="btn_color[3]? 'yellow' : 'none'" (click)='dateEST()' type="button" name="est">EST</button>
+   <button [ngClass]="btn_color[4]? 'yellow' : 'none'" (click)='clear()' type="button" name="clear">Clear</button>
+</div>
+
+{{date | date: 'medium'}}
