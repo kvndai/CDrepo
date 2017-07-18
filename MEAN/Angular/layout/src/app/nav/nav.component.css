@@ -1,0 +1,14 @@
+.nav{
+   width: 300px;
+   height: 500px;
+   border: 2px solid black;
+   display: inline-block;
+   vertical-align: top;
+   margin: 10px;
+   padding: 10px;
+   background-color: #99c1fc;
+}
+button{
+   width: 90%;
+   margin: 10px;
+}
