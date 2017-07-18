@@ -1,48 +1,56 @@
 <div class="container">
    <h1>Registration</h1>
+   <div id='green'>{{ success }}</div>
    <div class="main-content">
-      <div id='green'>{{ success }}</div><br>
       <h3>Account Information</h3>
       <form (submit) = "onSubmit()">
          <label>*First Name: </label>
-         <input [(ngModel)]="user.firstName" required minlength="2" maxlength="24" #firstName="ngModel" type="text" name="firstName" placeholder="First name"><br>
-         <div class='red' *ngIf='firstName.errors'>First name must be at least 2 characters</div>
+         <input [(ngModel)]="user.firstName" required minlength="2" maxlength="24" #firstName="ngModel" type="text" name="firstName" placeholder="First name">
+         <div class='red' *ngIf='firstName.errors && (firstName.dirty || firstName.touched)'>First name must be at least 2 characters</div>
+         <br>
          <!-- {{firstName.errors | json}} <br><br> -->
 
          <label>*Last Name: </label>
          <input [(ngModel)]="user.lastName" required minlength="2" maxlength="24" #lastName="ngModel" type="text" name="lastName" placeholder="Last name">
-         <div class='red' *ngIf='lastName.errors'>Last name must be at least 2 characters</div>
+         <div class='red' *ngIf='lastName.errors && (lastName.dirty || lastName.touched)'>Last name must be at least 2 characters</div>
          <!-- {{lastName.errors | json}} <br><br> -->
+         <br>
 
          <label>*Email: </label>
          <input [(ngModel)]="user.email" required minlength="4" maxlength="24" pattern="(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)" #email="ngModel" type="email" name="email" placeholder="abc@gmail.com">
-         <div class='red' *ngIf='email.errors'>Email must be valid format</div>
+         <div class='red' *ngIf='email.errors && (email.dirty || email.touched)'>Email must be valid format</div>
          <!-- {{email.errors | json}} <br><br> -->
+         <br>
 
          <label>*Password: </label>
          <input [(ngModel)]="user.password" required minlength="8" maxlength="32" pattern="^([a-zA-Z0-9@*#]{8,15})$" #password="ngModel" type="password" name="password"  #password='ngModel' placeholder="Password">
-         <div class='red' *ngIf='password.errors'>Password must be at least 8 characters</div>
+         <div class='red' *ngIf='password.errors && (password.dirty || password.touched)'>Password must be at least 8 characters</div>
          <!-- {{password.errors | json}} <br><br> -->
+         <br>
 
          <label>*Password Confirmation: </label>
          <input [(ngModel)]="user.conf_pw" required minlength="8" maxlength="32" pattern="^([a-zA-Z0-9@*#]{8,15})$" #conf_pw="ngModel" type="password" name="conf_pw">
-         <div class='red' *ngIf='user.password != user.conf_pw'>Passwords do not match</div>
+         <div class='red' *ngIf='user.password != user.conf_pw && (conf_pw.dirty || conf_pw.touched)'>Passwords do not match</div>
          <!-- {{conf_pw.errors | json}} <br><br> -->
+         <br>
 
          <label>*Street Addess: </label>
          <input [(ngModel)]="user.street" required minlength="10" maxlength="40" #street="ngModel" type="text" name="street" placeholder="123 Some St.">
-         <div class='red' *ngIf='street.errors'>First name must be at least 2 characters</div>
+         <div class='red' *ngIf='street.errors && (street.dirty || street.touched)'>First name must be at least 2 characters</div>
          <!-- {{street.errors | json}} <br><br> -->
+         <br>
 
          <label>Unit/Apt: </label>
          <input [(ngModel)]="user.unit" maxlength="10" type="text" #unit="ngModel" name="unit" value="">
-         <div class='red' *ngIf='unit.errors'>Too long</div>
+         <div class='red' *ngIf='unit.errors && (unit.dirty || unit.touched)'>Too long</div>
          <!-- {{unit.errors | json}} <br><br> -->
+         <br>
 
          <label>*City: </label>
          <input [(ngModel)]="user.city" required minlength="2" maxlength="20" #city="ngModel" type="text" name="city" value="">
-         <div class='red' *ngIf='city.errors'>First name must be at least 2 characters</div>
+         <div class='red' *ngIf='city.errors && (city.dirty || city.touched)'>First name must be at least 2 characters</div>
          <!-- {{city.errors | json}} <br><br> -->
+         <br>
 
          <label>*State: </label>
          <select [(ngModel)]="user.state" required maxlength="20" #state="ngModel" class="" name="state"><br>
@@ -50,8 +58,9 @@
             <option value="">...</option>
             <option value="WY">Wyoming</option>
          </select>
-         <div class='red' *ngIf='state.errors'>First name must be at least 2 characters</div>
+         <div class='red' *ngIf='state.errors && (state.dirty || state.touched)'>First name must be at least 2 characters</div>
          <!-- {{state.errors | json}} <br><br> -->
+         <br>
 
          <input [disabled] = "firstName.errors||lastName.errors||email.errors||password.errors||conf_pw.errors||street.errors||unit.errors||city.errors||state.errors" id="reg" type="submit" name="submit" value="Register">
       </form>

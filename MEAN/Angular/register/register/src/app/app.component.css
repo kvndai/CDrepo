@@ -13,3 +13,9 @@
 .green{
    color: green;
 }
+label{
+   width: 175px;
+   /*border: 1px solid black;*/
+   display: inline-block;
+   text-align: right;
+}
