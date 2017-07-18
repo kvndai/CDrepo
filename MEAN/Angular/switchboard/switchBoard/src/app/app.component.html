@@ -1,0 +1,14 @@
+<h1>Switchboard</h1>
+<div *ngFor = 'let bool of arr; let i=index' [ngStyle]="{
+    'display':'inline-block'}">
+  <button *ngIf='bool' (click)='toggleSwitch(i)' [ngClass]="bool? 'green' : 'red'" [ngStyle]="{
+    'margin': '2px',
+    'width': '100px',
+    'height': '100px'
+  }">On</button>
+  <button *ngIf='!bool' (click)='toggleSwitch(i)' [ngClass]="bool? 'green' : 'red'" [ngStyle]="{
+    'margin': '2px',
+    'width': '100px',
+    'height': '100px'
+  }">Off</button>
+</div>

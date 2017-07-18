@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
    date: any = '';
-   color: string = 'yellow';
    btn_color: any[] = [false, false, false, false, false]
    datePST(){
       this.date = new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
