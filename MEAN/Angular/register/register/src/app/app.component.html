@@ -1,20 +1,60 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+   <h1>Registration</h1>
+   <div class="main-content">
+      <div id='green'>{{ success }}</div><br>
+      <h3>Account Information</h3>
+      <form (submit) = "onSubmit()">
+         <label>*First Name: </label>
+         <input [(ngModel)]="user.firstName" required minlength="2" maxlength="24" #firstName="ngModel" type="text" name="firstName" placeholder="First name"><br>
+         <div class='red' *ngIf='firstName.errors'>First name must be at least 2 characters</div>
+         <!-- {{firstName.errors | json}} <br><br> -->
 
+         <label>*Last Name: </label>
+         <input [(ngModel)]="user.lastName" required minlength="2" maxlength="24" #lastName="ngModel" type="text" name="lastName" placeholder="Last name">
+         <div class='red' *ngIf='lastName.errors'>Last name must be at least 2 characters</div>
+         <!-- {{lastName.errors | json}} <br><br> -->
+
+         <label>*Email: </label>
+         <input [(ngModel)]="user.email" required minlength="4" maxlength="24" pattern="(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)" #email="ngModel" type="email" name="email" placeholder="abc@gmail.com">
+         <div class='red' *ngIf='email.errors'>Email must be valid format</div>
+         <!-- {{email.errors | json}} <br><br> -->
+
+         <label>*Password: </label>
+         <input [(ngModel)]="user.password" required minlength="8" maxlength="32" pattern="^([a-zA-Z0-9@*#]{8,15})$" #password="ngModel" type="password" name="password"  #password='ngModel' placeholder="Password">
+         <div class='red' *ngIf='password.errors'>Password must be at least 8 characters</div>
+         <!-- {{password.errors | json}} <br><br> -->
+
+         <label>*Password Confirmation: </label>
+         <input [(ngModel)]="user.conf_pw" required minlength="8" maxlength="32" pattern="^([a-zA-Z0-9@*#]{8,15})$" #conf_pw="ngModel" type="password" name="conf_pw">
+         <div class='red' *ngIf='user.password != user.conf_pw'>Passwords do not match</div>
+         <!-- {{conf_pw.errors | json}} <br><br> -->
+
+         <label>*Street Addess: </label>
+         <input [(ngModel)]="user.street" required minlength="10" maxlength="40" #street="ngModel" type="text" name="street" placeholder="123 Some St.">
+         <div class='red' *ngIf='street.errors'>First name must be at least 2 characters</div>
+         <!-- {{street.errors | json}} <br><br> -->
+
+         <label>Unit/Apt: </label>
+         <input [(ngModel)]="user.unit" maxlength="10" type="text" #unit="ngModel" name="unit" value="">
+         <div class='red' *ngIf='unit.errors'>Too long</div>
+         <!-- {{unit.errors | json}} <br><br> -->
+
+         <label>*City: </label>
+         <input [(ngModel)]="user.city" required minlength="2" maxlength="20" #city="ngModel" type="text" name="city" value="">
+         <div class='red' *ngIf='city.errors'>First name must be at least 2 characters</div>
+         <!-- {{city.errors | json}} <br><br> -->
+
+         <label>*State: </label>
+         <select [(ngModel)]="user.state" required maxlength="20" #state="ngModel" class="" name="state"><br>
+            <option value="AL">Alaska</option>
+            <option value="">...</option>
+            <option value="WY">Wyoming</option>
+         </select>
+         <div class='red' *ngIf='state.errors'>First name must be at least 2 characters</div>
+         <!-- {{state.errors | json}} <br><br> -->
+
+         <input [disabled] = "firstName.errors||lastName.errors||email.errors||password.errors||conf_pw.errors||street.errors||unit.errors||city.errors||state.errors"id="reg" type="submit" name="submit" value="Register">
+      </form>
+      <!-- {{user | json}} -->
+   </div>
+</div>

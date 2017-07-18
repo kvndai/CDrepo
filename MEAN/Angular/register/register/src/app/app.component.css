@@ -1,0 +1,15 @@
+.main-content{
+   width: 500px;
+   border: 2px solid black;
+   /*clear: both;*/
+}
+#reg{
+   width: 500px;;
+}
+.red{
+   color: red;
+}
+
+.green{
+   color: green;
+}
