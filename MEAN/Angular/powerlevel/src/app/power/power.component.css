@@ -1,0 +1,17 @@
+.container {
+   border: 1px solid black;
+   width: 970px;
+   height: 400px;
+}
+.component{
+   border: 1px solid black;
+   width: 300px;
+   display: inline-block;
+   margin-top: 200px;
+
+}
+.component2{
+   border: 1px solid black;
+   width: 300px;
+   display: inline-block;
+}
