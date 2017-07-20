@@ -1,0 +1,17 @@
+<div class="">
+   <h1>Add a Quote</h1>
+   <form (submit) = "onSubmit()">
+      <textarea [(ngModel)]="quote.quote" #quote="ngModel" required minlength ="4" name="quote" rows="8" cols="80" placeholder="Add a quote..."></textarea><br>
+      <div class="red" *ngIf='quote.errors && (quote.dirty || quote.touched)'>
+         Quote must be at least 4 characters
+      </div>
+
+      Author: <input [(ngModel)]="quote.author"  #author='ngModel' required minlength='1' type="text" name="author" placeholder="Add an author..."><br>
+      <div class="red" *ngIf='author.errors && (author.dirty || author.touched)'>
+         Author must be at least 1 characters
+      </div>
+      <input [disabled] = "quote.errors || author.errors" type="submit" name="submit" value="Add Quote">
+   </form>
+</div>
+
+<app-quotelist [myQuotes] = 'quotes' (voteupEmitter)="voteupQuote($event)" (votedownEmitter)="votedownQuote($event)" (clearEmitter)="clearQuote($event)"></app-quotelist>

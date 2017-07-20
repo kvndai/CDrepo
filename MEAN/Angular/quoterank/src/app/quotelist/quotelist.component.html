@@ -1,0 +1,13 @@
+
+<h1>Quote List</h1>
+  <div class='quotelist' *ngFor = 'let idx of myQuotes; let i=index'>
+     <p>{{ myQuotes[i].quote}}</p>
+     <p>- {{ myQuotes[i].author}}</p>
+     <p>{{ myQuotes[i].rating}}</p>
+     <button (click)='voteup(myQuotes[i])' class='voteup' type="button" name="voteup">Vote Up</button>
+     <button (click)='votedown(myQuotes[i])' class='votedown' type="button" name="votedown">Vote Down</button>
+     <button (click)='clear(myQuotes[i])' class='clear' type="button" name="clear">Clear</button>
+
+
+
+  </div>

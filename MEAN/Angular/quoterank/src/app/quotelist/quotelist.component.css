@@ -1,0 +1,11 @@
+.voteup {
+   background-color: #bdf9e1;
+}
+.votedown {
+   background-color: #fc9797;
+}
+
+.clear {
+   background-color: #282828;
+   color: white;
+}
