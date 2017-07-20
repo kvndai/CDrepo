@@ -1,0 +1,13 @@
+.container {
+   width: 970px;
+   border: 2px solid grey;
+}
+.form {
+   width: 300px;
+   border: 1px solid red;
+   margin: 10px;
+   padding: 5px;
+}
+#submit {
+   width: 250px;
+}
