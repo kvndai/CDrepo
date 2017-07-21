@@ -1,14 +1,21 @@
 <div class="container">
 
-   <div class="form">
-      <h1>GitHub Score</h1>
-      <form (submit) = 'onCalculate()'>
-         Github Username: <input type="text" name="username" placeholder="Enter Username" [(ngModel)]="username"><br>
-         <input id="submit" type="submit" name="submit" value="Calculate My GitScore!">
-      </form>
-   </div>
-
-   <div class="score">
-      {{user | json}}
-   </div>
+  <div class="form">
+    <h1>GitHub Score</h1>
+    <form (submit)='onCalculate()'>
+      Github Username: <input [(ngModel)]="username" required type="text" name="username" placeholder="Enter Username" #user="ngModel"><br>
+      <input [disabled]="user.errors" id="submit" type="submit" name="submit" value="Calculate My GitScore!">
+    </form>
+  </div>
+  <div *ngIf="formSubmit" class="result">
+    <h3 >User Does Not Exist</h3>
+  </div>
+  <div *ngIf="userScore" class="result">
+    <h3 *ngIf="userExist">{{userScore | json}}</h3>
+    <h3 *ngIf="userScore < 20">Needs Work!</h3>
+    <h3 *ngIf="userScore > 20 && userScore < 50">A Decent Shot!</h3>
+    <h3 *ngIf="userScore > 50 && userScore < 100">Doing good!</h3>
+    <h3 *ngIf="userScore > 100 && userScore < 200">Great Job!</h3>
+    <h3 *ngIf="userScore > 200">Github Elite!</h3>
+  </div>
 </div>

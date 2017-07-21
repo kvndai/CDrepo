@@ -10,7 +10,7 @@ export class HttpService {
   retrieveTasks(username) {
      if (username) {
       return this._http.get(`https://api.github.com/users/${username}`)
-      .map( data => data.json() )
+      .map( data => data.json())
       .toPromise();
     }
   }

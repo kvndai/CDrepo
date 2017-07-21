@@ -7,7 +7,15 @@
    border: 1px solid red;
    margin: 10px;
    padding: 5px;
+   display: inline-block;
 }
 #submit {
    width: 250px;
+}
+.result {
+  display: inline-block;
+  border: 1px solid red;
+  margin: 10px;
+  padding: 5px;
+  vertical-align: top;
 }
