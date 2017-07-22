@@ -17,11 +17,11 @@ export class ListComponent implements OnDestroy {
     private _router: Router,
   ) {
     this.subscription = _communicateService.productsObservable.subscribe(
-      (updateProducts) => { this.products = updateProducts },
+      (observabledata) => { this.products = observabledata },
       (err) => { },
       () => { }
     );
-    console.log(this._communicateService.productsObservable.getValue());
+    console.log('Obeservable data', this._communicateService.productsObservable.getValue());
   }
 
   delete(data){

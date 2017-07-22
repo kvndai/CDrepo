@@ -27,11 +27,11 @@ export class CreateComponent {
     // subscribe to the productsObservable observable.
     this.subscription = _communicateService.productsObservable.subscribe(
       // the .subscribe method requires 3 callback functions (success/err/successloading)
-      (updateProducts) => { this.products = updateProducts }, // this will update the data array to the most current data set
+      (observabledata) => { this.products = observabledata }, // this will update the data array to the most current data set
       (err) => { },
       () => { }
     );
-    console.log(this._communicateService.productsObservable.getValue());
+    console.log('Obeservable data', this._communicateService.productsObservable.getValue()); // Visualize what is currently in the observable dataset
   }
 
   onSubmit() {
