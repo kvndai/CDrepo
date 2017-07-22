@@ -10,6 +10,5 @@ export class CommunicateService {
   updateProducts(products: Array<Products>){
     this.productsObservable.next(products)
   }
-  constructor() { }
 
 }
