@@ -1,3 +1,13 @@
-<p>
-  list works!
-</p>
+<div class="container">
+  <h1>Product List</h1>
+  <div class="" *ngFor = 'let idx of products; let i=index'>
+    <p>dont forget to put img</p>
+    <p>{{products[i].title}}</p>
+    <p>{{products[i].price}}</p>
+    <button [routerLink]="['/edit', products[i].id]" type="button" name="button">EDIT</button>
+    <button (click)="delete(products[i])"type="button" name="button">DELETE</button>
+  </div>
+
+</div>
+
+{{products | json}}

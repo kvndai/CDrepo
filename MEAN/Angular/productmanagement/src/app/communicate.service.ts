@@ -6,8 +6,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class CommunicateService {
   // creates new observable
   productsObservable = new BehaviorSubject(null);
-  // updates observable on this function call
+  // updates observable (products is data sent from the component which called updateProducts
   updateProducts(products: Array<Products>){
+    // .next method simply udates the data in the observable
     this.productsObservable.next(products)
   }
 
