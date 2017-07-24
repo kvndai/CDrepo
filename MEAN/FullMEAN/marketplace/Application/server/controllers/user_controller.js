@@ -25,6 +25,7 @@ module.exports = {
   login: (req, res, next) => {
         User.findOne({email: req.body.email.toLowerCase()})
         .then((user) => {
+            console.log("user found in user_controller")
             if (!user) {
                 err = {error: "No user registered with that email"};
                 res.status(401).json(err);
@@ -36,8 +37,10 @@ module.exports = {
                 req.session.name = user.first_name;
                 req.session.user_id = user._id;
                 res.json(true);
+                console.log("user authenticated, session set in user_controller");
             }
         })
         .catch((err) => { res.status(409).json(err); });
+
     },
 }
