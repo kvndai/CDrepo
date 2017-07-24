@@ -10,9 +10,10 @@ module.exports = {
     let u = new User(req.body);
     u.save()
     .then((user) => {
-      // req.session.name = user.first_name;
-      // req.session.user_id = user._id;
+      req.session.name = user.first_name;
+      req.session.user_id = user._id;
       res.json(true);
+      console.log("session set");
     })
     .catch((err) => {
       console.log(err);
@@ -32,8 +33,8 @@ module.exports = {
                 res.status(402).json({error: "Password is incorrect"});
             }
             else {
-                // req.session.name = user.first_name;
-                // req.session.user_id = user._id;
+                req.session.name = user.first_name;
+                req.session.user_id = user._id;
                 res.json(true);
             }
         })
