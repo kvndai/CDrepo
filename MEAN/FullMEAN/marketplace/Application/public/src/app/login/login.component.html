@@ -1,0 +1,38 @@
+<p>
+  login works!
+</p>
+
+<div class="login">
+  <form (submit)="validateLogin()" #loginForm="ngForm">
+    <label>Email:</label>
+    <input [(ngModel)]="loguser.email" required  type="email" name="logEmail">
+    <label>Password:</label>
+    <input [(ngModel)]="loguser.password" required type="password" name="logPassword">
+    <div *ngIf="loginError"><p class="error">{{loginError}}</p></div>
+    <br>
+    <input type="submit" value="Log In" [disabled]="!loginForm.form.valid">
+  </form>
+</div>
+
+<div class="register">
+  <form (submit)="validateReg()" #regForm="ngForm">
+    <div *ngIf="regError"><p class="error">{{regError}}</p></div>
+    <label>*First Name:</label>
+    <input [(ngModel)]="reguser.first_name" required #firstName="ngModel" type="text" name="regFirstName">
+    <div class="red" *ngIf='!firstName.valid && (firstName.dirty || firstName.touched)'>First name is required</div>
+    <label>*Last Name:</label>
+    <input [(ngModel)]="reguser.last_name" required #lastName="ngModel" type="text" name="regLastName">
+    <div class="red" *ngIf='!lastName.valid && (lastName.dirty || lastName.touched)'>Last name is required</div>
+    <label>*Email:</label>
+    <input [(ngModel)]="reguser.email" required pattern="^([A-Za-z0-9._\-]+)@([a-zA-Z0-9._\-]+)\.([a-zA-Z]+)$" #regemail="ngModel" type="email" name="regEmail">
+    <div class="red" *ngIf='!regemail.valid && (regemail.dirty || regemail.touched)'>Email is Required</div>
+    <label>*Password:</label>
+    <input [(ngModel)]="reguser.password" required #regpassword="ngModel" type="password" name="regPassword">
+    <div class="red" *ngIf='!regpassword.valid && (regpassword.dirty || regpassword.touched)'>Must be 8 characters</div>
+    <label>*Password Confirmation:</label>
+    <input [(ngModel)]="reguser.confirmPassword" required #confPassword="ngModel" type="password" name="regPasswordConf">
+    <div class="red" *ngIf='reguser.password != reguser.confirmPassword && (confPassword.dirty || confPassword.touched)'>Password must match</div>
+    <input type="submit" name="submit" value="Register" [disabled]="firstName.errors||lastName.errors||regemail.errors||regpassword.errors||confPassword.errors">
+
+  </form>
+</div>

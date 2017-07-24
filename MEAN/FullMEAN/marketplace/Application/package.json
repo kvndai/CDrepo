@@ -1,0 +1,15 @@
+{
+  "name": "MongooseDash",
+  "version": "0.0.1",
+  "scripts": {
+    "prestart": "start mongod && start mongo",
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.2.0",
+    "express-session": "^1.15.4",
+    "mongoose": "^4.11.4"
+  }
+}
