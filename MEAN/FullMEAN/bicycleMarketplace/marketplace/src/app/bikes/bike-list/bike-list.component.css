@@ -1,4 +1,4 @@
-#wrapper {
+/*#wrapper {
     background-color: lightgray;
     width: 100%;
     padding: 2%;
@@ -14,7 +14,7 @@
             width: 90%;
             margin: auto;
             border-radius: 5%;
-        } 
+        }
 
 .bikes {
     width: 80%;
@@ -68,4 +68,4 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
-}
+}*/

@@ -9,7 +9,7 @@ module.exports = {
     register: (req, res, next) => {
         let u = new User(req.body);
         u.save()
-        .then((user) => { 
+        .then((user) => {
             req.session.name = user.first_name;
             req.session.user_id = user._id;
             res.json(true); })
@@ -17,7 +17,7 @@ module.exports = {
     },
     login: (req, res, next) => {
         User.findOne({email: req.body.email.toLowerCase()})
-        .then((user) => { 
+        .then((user) => {
             if (!user) {
                 err = {error: "No user registered with that email"};
                 res.status(401).json(err);
@@ -39,7 +39,7 @@ module.exports = {
     },
     getInfo: (req, res, next) => {
         User.findById(req.body.id)
-        .then((user) => { 
+        .then((user) => {
             let contactInfo = {};
             contactInfo["name"] = user.first_name;
             contactInfo["email"] = user.email;
@@ -48,6 +48,7 @@ module.exports = {
         .catch((err) => { res.status(416).json(err); });
     },
     current: (req, res, next) => {
+        console.log(req.session.name, req.session.user_id);
         if (req.session.user_id) {
             let curr = {};
             curr.id = req.session.user_id;

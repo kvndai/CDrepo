@@ -17,6 +17,7 @@ export class UserBikesComponent implements OnInit {
 
   ngOnInit() {
     this.getBikes();
+
   }
 
   getBikes() {

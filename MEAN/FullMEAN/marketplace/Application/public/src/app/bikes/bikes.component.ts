@@ -12,6 +12,11 @@ export class BikesComponent implements OnInit {
   constructor(private _api: ApiService, private _router: Router) { }
 
   ngOnInit() {
+    this._api.getCurrentUser()
+    .then((user) => { })
+    .catch((err) => { 
+      console.log(err);
+      this._router.navigate(['/login']); });
   }
 
   logout(){

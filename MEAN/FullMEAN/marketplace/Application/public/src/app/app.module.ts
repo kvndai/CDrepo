@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BikesComponent } from './bikes/bikes.component';
 import { BikesListComponent } from './bikes/bikes-list/bikes-list.component';
+import { BikesUserComponent } from './bikes/bikes-user/bikes-user.component';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { BikesListComponent } from './bikes/bikes-list/bikes-list.component';
     AppComponent,
     LoginComponent,
     BikesComponent,
-    BikesListComponent
+    BikesListComponent,
+    BikesUserComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

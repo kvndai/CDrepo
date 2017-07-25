@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
-import { User } from '../user'
-import { ApiService } from '../communication.service'
+import { Component } from '@angular/core';
+import { ApiService } from '../communication.service';
+import { Router } from '@angular/router';
+import { User } from '../user';
+import { Bicycle } from '../bicycle';
+
 
 
 @Component({
@@ -9,32 +11,28 @@ import { ApiService } from '../communication.service'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loguser: User = new User();
   reguser: User = new User();
   loginError: String;
   regError: String;
-  constructor(private _api: ApiService, private _router: Router) { }
-
-  ngOnInit() {
+  constructor(private _api: ApiService, private _router: Router) {
+    //random bike api
   }
 
-  validateLogin(){
-    console.log(this.loguser, "Login form data in LoginComponent");
+  validateLogin() {
     this._api.loginUser(this.loguser)
-    .then(() => {
+    .then((user) => {
       console.log("Logged in successfully");
       this._router.navigate(['/dashboard']); })
     .catch((err) => {
-      if(err.status == "401"){
-        this.loginError = "Not a registered User"
-        console.log(this.loginError);
-      } else if(err.status == "402"){
-        this.loginError = "Password incorrect"
-        console.log(this.loginError);
+      if (err.status == '401') {
+        this.loginError = "No user registered with that email.";
+      }
+      else if (err.status == '402') {
+        this.loginError = "Password is incorrect.";
       }
     })
-
   }
 
   validateReg(){

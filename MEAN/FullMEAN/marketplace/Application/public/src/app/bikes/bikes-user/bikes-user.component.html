@@ -1,0 +1,44 @@
+<div class="create_container">
+  <h1>Create Listing</h1>
+  <div class="create_form">
+    <form (submit)="addBike()" #bikeForm="ngForm">
+      <label>Image Upload</label>
+      <img [src]="newBike.image" alt="click to add photo (required)" (click)="linkPhoto()">
+      <label>Title</label>
+      <input type="text" name="title" [(ngModel)]="newBike.title" #title="ngModel" required>
+      <label>Description</label>
+      <textarea name="description" rows="8" cols="80" [(ngModel)]="newBike.description" #description="ngModel" required></textarea>
+      <label>Price</label>
+      <input type="number" name="price" [(ngModel)]="newBike.price" #price="ngModel" required>
+      <label>Location</label>
+      <input type="text" name="location" [(ngModel)]="newBike.location" #location="ngModel" required>
+      <input type="submit" name="submit" value="Update">
+      <button type="button" name="delete">Delete</button>
+    </form>
+  </div>
+</div>
+
+<div class="edit_container">
+  <div class="bikes" *ngFor="let b of myBikes; let i = index">
+    <form (submit)="updateBike(i)" #bikeForm="ngForm">
+        <img [src]="b.image" alt="click to add photo (required)" (click)="editPhoto(i)">
+
+          <label>Title</label>
+           <span class="error" *ngIf="title.errors && (title.dirty || title.touched)"> *required</span>
+          <input type="text" name="title" [(ngModel)]="b.title" #title="ngModel" required>
+          <label>Description</label>
+           <span class="error" *ngIf="description.errors && (description.dirty || description.touched)">
+           <span *ngIf="description.errors.required"> *required</span><span *ngIf="description.errors.maxlength"> *cannot exceed 200 characters</span></span>
+          <textarea rows="3" name="desc" [(ngModel)]="b.description" #description="ngModel" required maxlength="200"></textarea>
+          <label>Price</label>
+            <span class="error" *ngIf="price.errors && (price.dirty || price.touched)">
+            <span *ngIf="price.errors.required"> *required</span><span *ngIf="priceTooLow">*at least $1</span></span>
+          <input type="number" name="price" [(ngModel)]="b.price" #price="ngModel" required minValue="1">
+          <label>Location</label>
+            <span class="error" *ngIf="location.errors && (location.dirty || location.touched)"> *required</span>
+          <input type="text" name="location" [(ngModel)]="b.location" #location="ngModel" required>
+          <input type="submit" value="Update" [disabled]="!bikeForm.form.valid || b.image == '' || b.image == null">
+          <button  (click)="deleteBike(i)">Delete</button>
+    </form>
+  </div>
+</div>
