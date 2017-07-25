@@ -31,7 +31,8 @@ module.exports = {
                 res.status(401).json(err);
             }
             else if (!bcrypt.compareSync(req.body.password, user.password)) {
-                res.status(402).json({error: "Password is incorrect"});
+                err = {error: "Password is incorrect"}
+                res.status(402).json(err);
             }
             else {
                 req.session.name = user.first_name;
@@ -43,4 +44,11 @@ module.exports = {
         .catch((err) => { res.status(409).json(err); });
 
     },
+
+  logout: (req, res, next) => {
+    req.session.destroy();
+    console.log("User Logged out, Session destroyed");
+    res.json(true);
+  }
+
 }

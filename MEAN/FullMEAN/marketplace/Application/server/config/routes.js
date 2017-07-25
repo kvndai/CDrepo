@@ -1,8 +1,12 @@
 var path = require('path')
 var users = require('../controllers/user_controller.js')
+const bikes = require('../controllers/bike_controller.js');
+
 module.exports = function(app) {
   app.post('/register', users.register);
   app.post('/login', users.login);
+  app.get('/logout', users.logout);
+  app.get('/bicycles', bikes.all);
 
   app.all("*", (req, res, next) => {
     res.sendfile(path.resolve("./public/dist/index.html"))

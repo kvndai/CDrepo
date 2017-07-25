@@ -22,12 +22,16 @@ export class LoginComponent implements OnInit {
   validateLogin(){
     console.log(this.loguser, "Login form data in LoginComponent");
     this._api.loginUser(this.loguser)
-    .then(() => {this._router.navigate(['/dashboard']); })
+    .then(() => {
+      console.log("Logged in successfully");
+      this._router.navigate(['/dashboard']); })
     .catch((err) => {
       if(err.status == "401"){
         this.loginError = "Not a registered User"
+        console.log(this.loginError);
       } else if(err.status == "402"){
         this.loginError = "Password incorrect"
+        console.log(this.loginError);
       }
     })
 

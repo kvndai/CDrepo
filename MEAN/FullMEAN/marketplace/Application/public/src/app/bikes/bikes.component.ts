@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
+import { ApiService } from '../communication.service'
 
 @Component({
   selector: 'app-bikes',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BikesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _api: ApiService, private _router: Router) { }
 
   ngOnInit() {
   }
 
+  logout(){
+    console.log("Logout Clicked");
+    this._api.logout()
+    .then(() => {this._router.navigate(['/login'])})
+    .catch((err) => {
+      console.log(err);
+    })
+
+
+  }
 }
