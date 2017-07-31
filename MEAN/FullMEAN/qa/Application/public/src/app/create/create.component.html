@@ -1,0 +1,8 @@
+<a [routerLink]="['/dashboard']">Home</a>
+<button (click)="logout()" type="button" name="button">Logout</button>
+
+<form (submit)="createQuestion()">
+  <p>Question:</p><textarea name="question.question" [(ngModel)]='question.question'></textarea>
+  <p>Description (optional):</p><textarea name="question.description" [(ngModel)]='question.description'></textarea>
+  <input type="submit" name="" value="Add Question">
+</form>

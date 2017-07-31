@@ -1,0 +1,15 @@
+<a [routerLink]="['/dashboard']">Home</a>
+<button (click)="logout()" type="button" name="button">Logout</button>
+
+<h1>{{ question.question }}</h1>
+<h3>{{ question.description }}</h3>
+
+<h2>Answers</h2>
+<div *ngFor="let a of answers; let i = index">
+
+  <p>{{ a.answer }}</p>
+  <p>{{ a.description }}</p>
+  <!-- <p> by {{a._user.username }}</p> -->
+  <p>{{a.likes}} likes</p>
+  <button (click)='liked(a._id)'>Like</button>
+</div>

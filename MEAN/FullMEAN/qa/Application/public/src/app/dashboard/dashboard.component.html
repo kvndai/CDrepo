@@ -1,0 +1,20 @@
+hi {{currentUser}}
+<a [routerLink]="['/create']">Add a Question</a>
+<button (click)="logout()" type="button" name="button">Logout</button>
+
+<div class="search"><label>Search</label> <input type="text" id="search" name="searchBar" class="searchBar" [(ngModel)]="searchStr"></div>
+<table>
+  <tr>
+    <th>Questions</th>
+    <th>Answers</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let q of questions; let i = index">
+    <td>{{q.question}}</td>
+    <td>{{q.description}}</td>
+    <td>
+      <a [routerLink]="['/question/' + q._id]">Show</a>
+      <a [routerLink]="['/question/' + q._id + '/answer']">Answer</a>
+    </td>
+  </tr>
+</table>
