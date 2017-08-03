@@ -1,0 +1,48 @@
+<? xml version="1.0" encoding="UTF-8">
+
+<breakfastmenu>
+    <item category="entree">
+        <name>Croissant</name>
+        <description>Butter Bread</description>
+        <price>$1.99</price>
+    </item>
+    <item category="entree">
+        <name>Sausage Burrito</name>
+        <description>Burrito with sausage in it</description>
+        <price>$7.99</price>
+    </item>
+    <item category="beverage">
+        <name>Coffee</name>
+        <description>A cuppa coffee in the morning</description>
+        <price>$1.50</price>
+    </item>
+    <item category="beverage">
+        <name>Orange Juice</name>
+        <description>A juice made with oranges</description>
+        <price>$1.99</price>
+    </item>    
+</breakfastmenu>
+
+<dinnermenu>
+    <item category="entree">
+        <name>BBQ Ribs</name>
+        <description>Half rack of St. Louis style ribs</description>
+        <price>$11.99</price>
+    </item>
+    <item category="entree">
+        <name>Japanese Kobe Beef</name>
+        <description>The cow is flown in from Japan</description>
+        <price>$1000.00</price>
+    </item>
+    <item category="beverage">
+        <name>Beer</name>
+        <description>IPA</description>
+        <price>$4.50</price>
+    </item>
+    <item category="beverage">
+        <name>Wine</name>
+        <description>An alcoholic beverage made from grapes</description>
+        <price>$50.00</price>
+    </item>    
+</dinnermenu>
+
