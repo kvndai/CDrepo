@@ -14,6 +14,7 @@ export class ApiService {
   loginUser(user) {
     return this._http.post('/login', user).map(data => data.json()).toPromise();
   }
+  
 
   getCurrentUser() {
     return this._http.get('/currentUser').map(data => data.json()).toPromise();
