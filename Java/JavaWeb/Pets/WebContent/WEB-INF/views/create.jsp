@@ -7,13 +7,42 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Create your pet</h1>
-	<h3>Make a dog</h3>
-	<form action="dogs" method="post">
-		Name: <input type="text" name="name" >
-		Breed: <input type="text" name="breed">
-		Weight: <input type="text" name="weight">
-		<input type="submit" value="Submit">
+	<h1>Create your pets</h1>
+	
+	<h2>Create a Dog</h2>
+	
+	<form action="dogs"  method="get">
+		<p>
+			<label>Name: </label>
+			<input type="text" name="name">	
+		</p>
+		<p>
+			<label>Breed: </label>
+			<input type="text" name="breed">	
+		</p>
+		<p>
+			<label>Weight: </label>
+			<input type="number" name="weight">	
+		</p>
+		<input type="submit" value="Create">	
+	</form>
+	
+	<h2>Create a Cat</h2>
+	
+	<form action="cats"  method="get">
+		<p>
+			<label>Name: </label>
+			<input type="text" name="name">	
+		</p>
+		<p>
+			<label>Breed: </label>
+			<input type="text" name="breed">	
+		</p>
+		<p>
+			<label>Weight: </label>
+			<input type="number" name="weight">	
+		</p>
+		<input type="submit" value="Create">	
 	</form>
 </body>
 </html>
