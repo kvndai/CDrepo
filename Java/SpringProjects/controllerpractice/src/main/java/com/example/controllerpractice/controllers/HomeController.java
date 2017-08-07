@@ -5,15 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
-	@RequestMapping("")
+	@RequestMapping("/")
 	public String hello() {
-		return "forward:/index.html";
-	}
-	@RequestMapping("/world")
-	public String world() {
-		return "forward:/index2.html";
-		
+		return "index.jsp";
 	}
 }
