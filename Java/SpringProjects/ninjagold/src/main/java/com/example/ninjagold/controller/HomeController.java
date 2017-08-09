@@ -11,7 +11,6 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +20,7 @@ public class HomeController {
 	ArrayList<String> activities = new ArrayList<String>();
 	
 	@RequestMapping(path="/gold", method=RequestMethod.GET)
-	public String index(HttpSession session, Model model) {
+	public String index(HttpSession session) {
 		Integer counter = (Integer) session.getAttribute("counter");
 		if (counter == null) {
 			counter = 0;
@@ -31,7 +30,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="/gold", method=RequestMethod.POST)
-	public String process(HttpSession session, @RequestParam(value = "building") String building, Model model) {
+	public String process(HttpSession session, @RequestParam(value = "building") String building) {
 		Integer counter = (Integer) session.getAttribute("counter");
 		Random rand = new Random();
 		String log;
@@ -89,12 +88,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="/reset", method=RequestMethod.POST)
-		public String reset(HttpSession session) {
-			Integer counter = (Integer) session.getAttribute("counter");
-			counter = null;
-			session.setAttribute("counter", counter);
-			ArrayList<String> activities = new ArrayList<String>();
-			session.setAttribute("activities", activities);
-			return "redirect:/gold";
-		}
+	public String reset(HttpSession session) {
+		Integer counter = (Integer) session.getAttribute("counter");
+		counter = null;
+		session.setAttribute("counter", counter);
+		ArrayList<String> activities = new ArrayList<String>();
+		session.setAttribute("activities", activities);
+		return "redirect:/gold";
+	}
 }
