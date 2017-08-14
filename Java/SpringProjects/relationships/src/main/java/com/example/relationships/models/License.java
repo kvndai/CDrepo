@@ -3,14 +3,16 @@ package com.example.relationships.models;
 import java.util.*;
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="licenses")
 public class License {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private String number;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date expiration_date;
     private String state;
     private Date createdAt;
@@ -18,17 +20,33 @@ public class License {
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="person_id")
     private Person person;
+    private String number;
+    private static Long counter = (long) 0;
+    
     public License() {
         
     }
     
-    public License(String number, Person person) {
-        this.number = number;
-        this.person = person;
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-    }
-
+    public License(String state, Person person, Date expiration_date) {
+		this.expiration_date = expiration_date;
+    this.state = state;
+    this.person = person;
+    this.number = generateNumber();
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+}
+    
+    public static String generateNumber() {
+		counter++;
+		String counterS = counter.toString();
+		String count = "";
+		for(int i = 0; i < (6 - counterS.length()); i ++) {
+			count += "0";
+		}
+		count += counterS;
+		return count;
+}
+    
 	public Long getId() {
 		return id;
 	}
