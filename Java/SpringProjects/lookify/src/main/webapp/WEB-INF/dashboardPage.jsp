@@ -12,22 +12,14 @@
 	<a href = "/songs/new">Add New</a>
 	<a href = "#">Top Songs</a>
 	
-	<%-- <form:form method="POST" action="/search/{artist}" modelAttribute="artistsearch">
-    
-	    <form:label path="name">Name
-	    <form:errors path="name"/>
-	    <form:input path="name"/></form:label>
-	    
-	    <form:label path="creator">Creator
-	    <form:errors path="creator"/>
-	    <form:input path="creator"/></form:label>
-	    
-	    <form:label path="version">Version
-	    <form:errors path="version"/>
-	    <form:input path="version"/></form:label>
+	<form:form method="POST" action="/search/{artist}" modelAttribute="artistsearch">
+        
+	    <form:label path="artist">Artist
+	    <form:errors path="artist"/>
+	    <form:input path="artist"/></form:label>
 	    
 	    <input type="submit" value="Submit"/>
-	</form:form> --%>
+	</form:form>
 	
 	<table class="table">
     	<tr>
