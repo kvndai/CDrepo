@@ -12,10 +12,20 @@ public class Person {
     private Long id;
 	private String firstName;
     private String lastName;
-    private Date createdAt;
-    private Date updatedAt;
+    private Date created_at;
+    private Date updated_at;
     @OneToOne(mappedBy="person", fetch=FetchType.LAZY)
     private License license;
+    
+    @PrePersist
+    protected void onCreate() {
+    	created_at = new Date();
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+    	updated_at = new Date();
+    }
     
     public Person() {
         
@@ -23,8 +33,8 @@ public class Person {
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
+        this.created_at = new Date();
+        this.updated_at = new Date();
     }
     
     
@@ -52,20 +62,20 @@ public class Person {
 		this.lastName = lastName;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
+	public Date getcreated_at() {
+		return created_at;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	public void setcreated_at(Date created_at) {
+		this.created_at = created_at;
 	}
 
-	public Date getUpdatedAt() {
-		return updatedAt;
+	public Date getupdated_at() {
+		return updated_at;
 	}
 
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
+	public void setupdated_at(Date updated_at) {
+		this.updated_at = updated_at;
 	}
 
 	public License getLicense() {

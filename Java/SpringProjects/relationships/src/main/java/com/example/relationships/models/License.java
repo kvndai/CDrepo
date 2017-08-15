@@ -15,25 +15,33 @@ public class License {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date expiration_date;
     private String state;
-    private Date createdAt;
-    private Date updatedAt;
+    private Date created_at;
+    private Date updated_at;
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="person_id")
     private Person person;
     private String number;
     private static Long counter = (long) 0;
+    @PrePersist
+    protected void onCreate() {
+    	created_at = new Date();
+    }
     
+    @PreUpdate
+    protected void onUpdate() {
+    	updated_at = new Date();
+    }
     public License() {
         
     }
     
     public License(String state, Person person, Date expiration_date) {
-		this.expiration_date = expiration_date;
+	this.expiration_date = expiration_date;
     this.state = state;
     this.person = person;
     this.number = generateNumber();
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
+    this.created_at = new Date();
+    this.updated_at = new Date();
 }
     
     public static String generateNumber() {
@@ -79,20 +87,20 @@ public class License {
 		this.state = state;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
+	public Date getcreated_at() {
+		return created_at;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	public void setcreated_at(Date created_at) {
+		this.created_at = created_at;
 	}
 
-	public Date getUpdatedAt() {
-		return updatedAt;
+	public Date getupdated_at() {
+		return updated_at;
 	}
 
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
+	public void setupdated_at(Date updated_at) {
+		this.updated_at = updated_at;
 	}
 
 	public Person getPerson() {
