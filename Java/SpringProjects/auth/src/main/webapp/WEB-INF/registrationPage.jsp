@@ -28,5 +28,7 @@
         </p>
         <input type="submit" value="Register!"/>
     </form:form>
+    <br>
+    <button><a href="/login">Login</a></button>
 </body>
 </html>
