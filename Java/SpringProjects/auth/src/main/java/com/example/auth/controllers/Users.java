@@ -43,6 +43,7 @@ public class Users {
         return "redirect:/";
     }
     
+    
     @RequestMapping("/login")
     public String login(@Valid @ModelAttribute("user") User user, @RequestParam(value="error", required=false) String error, @RequestParam(value="logout", required=false) String logout, Model model) {
         if(error != null) {
