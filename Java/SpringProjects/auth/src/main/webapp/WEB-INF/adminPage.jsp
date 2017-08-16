@@ -6,15 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome Page</title>
+<title>Admin Page</title>
 </head>
 <body>
-    <h1>Welcome Page <c:out value="${currentUser.firstName}"></c:out></h1>
-   	<p>First Name: <c:out value="${ currentUser.firstName }"></c:out></p>
-    <p>Last Name: <c:out value="${ currentUser.lastName }"></c:out></p>
-    <p>Email: <c:out value="${ currentUser.username }"></c:out></p>
-    <p>Sign up Date: <c:out value="${ currentUser.createdAt }"></c:out></p>
-    <p>Last Sign in: <c:out value="${ currentUser.updatedAt }"></c:out></p>
+    <h1>Welcome to the Admin Page <c:out value="${currentUser.username}"></c:out></h1>
     
     <form id="logoutForm" method="POST" action="/logout">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

@@ -15,6 +15,10 @@ public class User {
     private String username;
     @Size(min=5)
     private String password;
+    @Size(min=1)
+    private String firstName;
+    @Size(min=1)
+    private String lastName;
     @Transient
     private String passwordConfirmation;
     private Date createdAt;
@@ -61,7 +65,23 @@ public class User {
         this.passwordConfirmation = passwordConfirmation;
     }
 
-    public Date getCreatedAt() {
+    public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Date getCreatedAt() {
         return createdAt;
     }
 
